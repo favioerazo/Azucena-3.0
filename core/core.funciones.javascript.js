@@ -6,8 +6,8 @@ function buscar() {
           {
             $.post("../core/core.sql.listado.clientes.registro.php",{valorBusqueda: textoBusqueda},function(mensaje) {
                 $("#listaclientes").html(mensaje);
-               }); 
-          } else { 
+               });
+          } else {
               $("#listaclientes").html('');
         };
         //if(textoBusqueda=="")console.log("tb esta null");
@@ -23,7 +23,7 @@ function buscar() {
                });
         }
         function cargaDatosOrden()
-        {          
+        {
             var orden=document.getElementById("clienteregistro").value;
             console.log("Orden: "+orden);
             if(orden!=''){
@@ -33,7 +33,7 @@ function buscar() {
               },function(mensaje) {
                 var datos=mensaje.split("||");
                 console.log(datos);
-                if(datos[1]=="si"){                  
+                if(datos[1]=="si"){
                   document.getElementById('btnmodi').disabled=false;
                   document.getElementById('clienteregistro').readOnly=true;
                   var arreglo=["marca","modelo","motor","tipovehiculo","placa","anio","color","kilometraje","combustible"];
@@ -50,10 +50,12 @@ function buscar() {
 
                 $("#cliente").html(datos[0]);
                });
+               cargaDatosAseguradora();
+               cargaObjetosForm();
           }else{
           alert("Debe ingresar un numero valido");}
         }
-        function verificaForm1()
+        function updateDatosVehiculo()
         {
           var correcto=true;
 
@@ -76,18 +78,17 @@ function buscar() {
             //var datos=[adios:"",hola:""];
             //console.log(datos);
             $.post("../core/core.sql.insert.php",{
-            funcion: 5,
-            datos_auto : datos,
-            orden : n_orden
-          },function(mensaje) {
+              funcion: 5,
+              datos_auto : datos,
+              orden : n_orden
+            },function(mensaje) {
                 //$("#arreglo").html("<br><p class='btn-info' align='center' >"+mensaje+"</p>"+
                  // "<br><p class='btn-success' align='center' onClick=mostrarForm('2','1')>Continuar</p>");
-                console.log(mensaje); 
-                updateObjetosAdicionales();              
-                mostrarForm('3','2');
-               }); 
+                console.log(mensaje);
+                updateObjetosAdicionales();
+               });
           }else
-            alert("Debe Completar todos los campos!");
+            alert("Debe Completar todos los campos para actualizar!");
         }
         function registroInsert($usuario){
           var textoBusqueda =6;
@@ -101,10 +102,10 @@ function buscar() {
             c_usuario : $usuario
           },function(mensaje) {
                 $("#arreglo").html(mensaje);
-                //alert(mensaje); 
+                //alert(mensaje);
                 document.getElementById('btnsig1').disabled=true;
                 document.getElementById('buscacliente').disabled=true;
-               }); 
+               });
         }
 
         function cargarListadoOrdenes(){
@@ -117,10 +118,10 @@ function buscar() {
               },function(mensaje) {
                 $("#arreglo").html("<br><p class='btn-info' align='center' >"+mensaje+"</p>"+
                   "<br><p class='btn-success' align='center' onClick=mostrarForm('2','1')>Continuar</p>");
-                //alert(mensaje); 
+                //alert(mensaje);
                 //document.getElementById('btnsig1').disabled=true;
-               }); 
-          }); 
+               });
+          });
         }
         function confirmaCliente()
         {
@@ -145,8 +146,8 @@ function buscar() {
       document.getElementById('paso'+$muestra).hidden=false;
       document.getElementById('paso'+$oculta).hidden=true;
       //document.getElementById("barraprogreso").aria-valuenow=($muestra*20);
-      $('#barraprogreso').attr("aria-valuenow",($muestra*16.6)); 
-      $('#barraprogreso').attr("style","width:"+($muestra*16.6)+"%;"); 
+      $('#barraprogreso').attr("aria-valuenow",($muestra*16.6));
+      $('#barraprogreso').attr("style","width:"+($muestra*16.6)+"%;");
       }
 
       function selectCliente()
@@ -163,7 +164,7 @@ function buscar() {
 
       function cargaObjetosForm()
       {
-        //alert("Cargo");       
+        //alert("Cargo");
         var n_orden=document.getElementById("clienteregistro").value;
         $.post("../core/core.sql.insert.php",{
         funcion: 6,
@@ -171,32 +172,32 @@ function buscar() {
         },function(mensaje) {
           $("#listaObjetos").html(mensaje);
           //$("#listaObjetos").append(mensaje);
-          //alert(mensaje); 
+          //alert(mensaje);
           //document.getElementById('btnsig1').disabled=true;
-         }); 
+         });
       }
 
       function updateObjetosAdicionales(){
         var datos=[];
         var n_orden=document.getElementById("clienteregistro").value;
-        
+
         for (var i = 0; i < 100; i++) {
           if ( $("#ov-"+i).length > 0 &&  $("#ov-"+i).prop('checked')  ) {
            datos.push( $("#ov-"+i).val());
           }
         }
         console.log("Largo: "+datos.length);
-           $.post("../core/core.sql.insert.php",{
+        $.post("../core/core.sql.insert.php",{
         funcion: 7,
         orden : n_orden,
-        v_datos : datos 
+        v_datos : datos
         },function(mensaje) {
           //$("#listaObjetos").html(mensaje);
           //$("#listaObjetos").append(mensaje);
-          console.log(mensaje); 
-          console.log("Actualizo"); 
+          console.log(mensaje);
+          console.log("Actualizo");
           //document.getElementById('btnsig1').disabled=true;
-         }); 
+         });
       }
       function cargaImagenesDaños()
       {
@@ -208,7 +209,7 @@ function buscar() {
             alert("Debe llenar todos los Datos");
             completo=false;
             break;
-          }     
+          }
         }
         if(completo)
         {
@@ -220,7 +221,7 @@ function buscar() {
           formData.append("n_orden",n_orden);
             $.ajax({
                     url: "../core/core.sql.insert.php",
-                    type: "POST",                
+                    type: "POST",
                     data: formData,
                     contentType: false,
                     processData: false,
@@ -242,7 +243,7 @@ function buscar() {
             alert("Debe llenar todos los Datos");
             completo=false;
             break;
-          }     
+          }
         }
         if(completo)
         {
@@ -254,7 +255,7 @@ function buscar() {
           formData.append("n_orden",n_orden);
             $.ajax({
                     url: "../core/core.sql.insert.php",
-                    type: "POST",                
+                    type: "POST",
                     data: formData,
                     contentType: false,
                     processData: false,
@@ -267,21 +268,26 @@ function buscar() {
         }
     }
 
-      function coma(e) { 
-          tecla=(document.all) ? e.keyCode : e.which; 
+      function coma(e) {
+          tecla=(document.all) ? e.keyCode : e.which;
           if (tecla==44 || tecla==34 || tecla==39 || tecla==43
-            || tecla==46 || tecla==39) { 
-              //alert('Sin comas, tío'); 
-              return false; 
-          } 
-      } 
+            || tecla==46 || tecla==39) {
+              //alert('Sin comas, tío');
+              return false;
+          }
+      }
 
       function habilitaAdelanto()
       {
         if(document.getElementById("ch-a").checked==true){
-          document.getElementById("txt-adelanto").readOnly=false;
+        //  document.getElementById("txt-adelanto").readOnly=false;
+            document.getElementById("txt-adelanto").hidden=false;
+            /*$("#txt-adelanto").fadeIn();
+            $("#txt-adelanto").fadeIn("slow");
+            $("#txt-adelanto").fadeIn(3000);*/
         }else{
-          document.getElementById("txt-adelanto").readOnly=true;
+          //document.getElementById("txt-adelanto").readOnly=true;
+            document.getElementById("txt-adelanto").hidden=true;
           document.getElementById("txt-adelanto").value="";
         }
       }
@@ -294,9 +300,88 @@ function buscar() {
       {
         alert(document.getElementById("img-d-1").value);
       }
+
+      function updateDatosAseguradora()
+      {
+        var n_orden=document.getElementById("clienteregistro").value;
+        $.post("../core/core.sql.insert.php",{
+        funcion: 10,
+        n_orden : n_orden,
+        c_poliza : document.getElementById("c_poliza_aseguradora").value,
+        c_reclamo : document.getElementById("c_reclamo_aseguradora").value,
+        d_empresa : document.getElementById("d_nombre_aseguradora").value,
+        },function(mensaje) {
+          //$("#listaObjetos").html(mensaje);
+          //$("#listaObjetos").append(mensaje);
+          console.log(mensaje);
+          //console.log("Actualizo");
+          //document.getElementById('btnsig1').disabled=true;
+         });
+      }
+      function cargaListadoEncargados()
+      {
+        var n_orden=document.getElementById("clienteregistro").value;
+        $.post("../core/core.sql.insert.php",{
+        funcion: 11,
+        },function(mensaje) {
+          $("#listaEncargados").html(mensaje);
+          //$("#listaObjetos").append(mensaje);
+          console.log(mensaje);
+          //console.log("Actualizo");
+          //document.getElementById('btnsig1').disabled=true;
+        });
+      }
+      function setEncargado()
+      {
+        var valor=document.getElementById('listaEncargados').value;
+          //alert("Valor de la lista: "+document.getElementById('listaclientes').value);
+          if(valor!=""){
+          document.getElementById('id-encargado').value=valor;
+          //else alert("Error Vacio");
+          //alert(document.getElementById('listaclientes').value);
+        }
+      }
+      function cargaDatosAseguradora()
+      {
+        var orden=document.getElementById("clienteregistro").value;
+        $.post("../core/core.sql.insert.php",
+        {
+          funcion: 12,
+          n_orden : orden
+        },function(mensaje)
+        {
+          var datos=mensaje.split("|");
+          console.log(datos);
+          document.getElementById("d_nombre_aseguradora").value=datos[0];
+          document.getElementById("c_poliza_aseguradora").value=datos[1];
+          document.getElementById("c_reclamo_aseguradora").value=datos[2];
+
+        });
+      }
+
+      function asignaOrden()
+      {
+        var orden=document.getElementById("clienteregistro").value;
+        $.post("../core/core.sql.insert.php",
+        {
+          funcion: 13,
+          n_orden : 10100010,
+          v_costo_estimado : document.getElementById("costo_estimado").value,
+          d_forma_pago : (document.getElementById("forma-pago").value+", "+document.getElementById("forma-pago-otro").value),
+          v_adelanto_pago_trabajo : document.getElementById("txt-adelanto").value,
+          f_posible_entrega : document.getElementById("fecha-entrega").value,
+          d_observaciones : document.getElementById("txt-observaciones").value,
+          c_usuario_encargado : document.getElementById("id-encargado").value,
+          c_usuario_asigno : obtieneUsuarioActual()
+        },function(mensaje)
+        {
+          console.log(mensaje);
+
+        });
+      }
      /* $(function(){
         $("input[name='img-d-1']").on("change", function(){
-            
+
         alert(document.getElementById("img-d-1").value);
         });
      });*/
@@ -324,4 +409,3 @@ function buscar() {
         });
     });
     }*/
-        

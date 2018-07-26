@@ -8,8 +8,8 @@
 	</parameter>
 	<queryString>
 		<![CDATA[select a.c_usuario, a.d_accion,a.d_direccion, b.d_usuario, a.f_ingreso from sist_log_login a, sist_usuarios b
-where a.c_usuario=b.c_usuario and 
- f_ingreso>$P{fecha}]]>
+where a.c_usuario=b.c_usuario and
+ f_ingreso>$P{fecha} order by f_ingreso desc]]>
 	</queryString>
 	<field name="c_registro" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>

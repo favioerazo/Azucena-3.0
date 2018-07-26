@@ -19,7 +19,7 @@
 	$sql=$consultaBusqueda;
 	if(!$db->conectar()){
 		echo "No Se conecto";
-	}else 
+	}else
 	{
 		$consulta = $db->conexion->query($sql);
 		$db->desconectar();
@@ -71,7 +71,32 @@
 			# code...
 		subirImagenReparaciones();
 			break;
-		
+		case 10:
+			# code...
+		updateDatosAseguradora();
+			break;
+		case 11:
+			# code...
+		cargaDatosEncargados();
+			break;
+		case 12:
+			# code...
+			cargaDatosAseguradora();
+			break;
+		case 13:
+			# code...
+			asignaOrden();
+			break;
+		case 14:
+			# code...
+			break;
+		case 15:
+			# code...
+			break;
+		case 16:
+			# code...
+			break;
+
 		default:
 			# code...
 		$mensaje.="6>Funcion #".$funcion;
@@ -85,19 +110,19 @@
 		if(!$db->conectar()){
 		    //exit;//
 		    echo "No Se conecto al Servidor de base de datos";
-		}else 
+		}else
 		{
 			//echo "SELECT c_objeto from dat_reg_objetos_x_vehiculo WHERE c_registro='".$_POST['orden']."'";
 			$objetosvehiculo=array();
 			$consulta = $db->conexion->query("SELECT c_objeto from dat_reg_objetos_x_vehiculo WHERE c_registro='".$_POST['orden']."'");
-			while($resultados = mysqli_fetch_array($consulta)) 
+			while($resultados = mysqli_fetch_array($consulta))
 			{
 				array_push($objetosvehiculo,$resultados['c_objeto']);
 				//echo "<br>resul ".$resultados['c_objeto'];
 			}
 			//echo "aqui: ".$objetosvehiculo[0];
 			$consulta = $db->conexion->query($sql);
-			while($resultados = mysqli_fetch_array($consulta)) 
+			while($resultados = mysqli_fetch_array($consulta))
 			{
 				/*echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" value="'.$resultados['c_objeto'].'">
@@ -124,7 +149,7 @@
 	include('conexion.php');
 		//echo "<br>Entro en la funcion #1";
 		$sql = 'INSERT INTO
-		dat_reg_registro_ordenes 
+		dat_reg_registro_ordenes
 		(c_registro,
 		c_cliente,
 		d_identidad,
@@ -142,17 +167,17 @@
 
 		//$sql_n_orden="SELECT max(c_registro) as n_orden FROM dat_reg_registro_ordenes where d_identidad=".$_POST['d_identidad'];
 		$sql_n_orden="SELECT c_registro, c_correlativo+1 as c_correlativo FROM sist_correlativos ";
-		
+
 		//echo "<br>--$sql";
 		/*$correlativo="2395000002";
-		
+
 		echo "<br>--$sql";
 		echo "<br>--$sql_n_orden";
 		echo "<br>--$sql_update_correlativos";*/
 		if(!$db->conectar()){
 		    //exit;//
 		    echo "No Se conecto al Servidor de base de datos";
-		}else 
+		}else
 		{
 			$db->conexion->query($sql);
 			$consulta = $db->conexion->query($sql_n_orden);
@@ -164,12 +189,12 @@
 			$correlativoOrden="";
 			$correlativoAuto="";
 
-			while($resultados = mysqli_fetch_array($consulta)) 
+			while($resultados = mysqli_fetch_array($consulta))
 			{
 				if($resultados['c_registro']=='02')
-				$correlativoOrden ="".$resultados['c_correlativo'];	
+				$correlativoOrden ="".$resultados['c_correlativo'];
 				elseif($resultados['c_registro']=='03')
-				$correlativoAuto ="".$resultados['c_correlativo'];			
+				$correlativoAuto ="".$resultados['c_correlativo'];
 			};
 
 
@@ -178,7 +203,7 @@
 				(c_registro,f_ingreso)
 				Values
 				('".$correlativoOrden."',NOW())";
-			
+
 			$db->conexion->query($sql_insert_aseguradora);
 
 
@@ -231,8 +256,8 @@
 			END
 			c_estatus_solicitud,
 			date_format(f_fecha_ingreso,"%Y-%m-%d") as f_fecha_ingreso
-			from dat_reg_registro_ordenes a, 
-			dat_cli_clientes b 
+			from dat_reg_registro_ordenes a,
+			dat_cli_clientes b
 			where b.d_identidad=""+a.d_identidad and
 			c_estatus_solicitud="I"
 			LIMIT 20';
@@ -250,11 +275,11 @@
 				  <tbody>';
 		if(!$db->conectar()){
 		    echo "No Se conecto al Servidor de base de datos";
-		}else 
+		}else
 		{
 			$consulta = $db->conexion->query($sql);
 			//echo "$sql";
-			while($resultados = mysqli_fetch_array($consulta)) 
+			while($resultados = mysqli_fetch_array($consulta))
 			{
 				$datos.='<tr>
 			      <th scope="row">'.$resultados['c_registro'].'</th>
@@ -263,8 +288,8 @@
 			      <td>'.$resultados['c_estatus_solicitud'].'</td>
 			      <td>'.$resultados['f_fecha_ingreso'].'</td>
 			    </tr>';
-				//$datos .="<br><p class='btn-success' align='center'>".$resultados['d_nombre']."</p>";	
-			}		
+				//$datos .="<br><p class='btn-success' align='center'>".$resultados['d_nombre']."</p>";
+			}
 			$datos.='</tbody>
 					</table>';
 		echo "$datos";
@@ -273,13 +298,13 @@
 	}
 
 	function listadoClientesRegistro()
-	{			
+	{
 		include('conexion.php');
 		$sql="SELECT * FROM dat_cli_clientes order by d_nombre limit 200";
-		
+
 		if(!$db->conectar()){
 		    echo "No Se conecto al Servidor de base de datos";
-		}else 
+		}else
 		{
 			$consulta = $db->conexion->query($sql);
 			$filas = mysqli_num_rows($consulta);
@@ -287,9 +312,9 @@
 				$mensaje = "<p> No Se Encontraron Registros </p>";
 			} else {
 				$n=0;
-				while($resultados = mysqli_fetch_array($consulta)) 
+				while($resultados = mysqli_fetch_array($consulta))
 				{
-					$nombre = $resultados['d_nombre'];					
+					$nombre = $resultados['d_nombre'];
 					if($n==0)
 					$mensaje.='
 						<option value="'.$resultados['c_cliente'].'|'.$resultados['d_identidad'].'|'.strtoupper($nombre).'" selected>' . strtoupper($nombre ). ' | '.$resultados['d_identidad'].' </option>
@@ -308,16 +333,16 @@
 
 	function verificaExisteOrden()
 	{
-		$sql='SELECT 
+		$sql='SELECT
 			count(a.c_registro) as existe,
 			a.c_registro,
 			b.d_nombre
 			from dat_reg_registro_ordenes a,
 			dat_cli_clientes b
-			where a.c_registro="'.$_POST['n_orden'].'" and 
+			where a.c_registro="'.$_POST['n_orden'].'" and
 			a.d_identidad=""+b.d_identidad and
 			a.c_estatus_solicitud="I" ';
-		$sql='select 
+		$sql='SELECT
 			count(a.c_registro) as existe,
 			a.c_registro,
 			b.d_nombre,
@@ -333,7 +358,7 @@
 			from dat_reg_registro_ordenes a,
 			dat_cli_clientes b,
 			dat_reg_vehiculo c
-			where a.c_registro="'.$_POST['n_orden'].'" and 
+			where a.c_registro="'.$_POST['n_orden'].'" and
 			a.d_identidad=""+b.d_identidad and
 			a.c_estatus_solicitud="I" and
 			a.c_registro=c.c_registro';
@@ -341,11 +366,11 @@
 		include('conexion.php');
 		if(!$db->conectar()){
 		    echo "No Se conecto al Servidor de base de datos";
-		}else 
+		}else
 		{
 			$consulta = $db->conexion->query($sql);
 			//$filas = mysqli_num_rows($consulta);
-			while($resultados = mysqli_fetch_array($consulta)) 
+			while($resultados = mysqli_fetch_array($consulta))
 			{
 				if($resultados['existe']=='1'){
 					echo "<br><p class='btn-success' align='center' >
@@ -361,35 +386,35 @@
 					echo "||".$resultados['c_color'];
 					echo "||".$resultados['d_kilometraje'];
 					echo "||".$resultados['d_combustible'];
-				}else{					
+				}else{
 					echo "<br><p class='btn-danger' align='center' >
 					No existe la orden <strong># '".$_POST['n_orden']."'</strong>, o se Encuentra en estado NO modificable, Intentelo nuevamente.
 					</p>";
 					echo "||no";
 				}
-			}			
+			}
 		}
    			$db->desconectar();
 	}
 	function updateDatosVehiculo()
-	{		
+	{
         //$arreglo=["marca","modelo","motor","tipovehiculo","placa","anio","color","kilometraje","combustible"];
 		$datos=$_POST['datos_auto'];
-		$sql="UPDATE dat_reg_vehiculo 
-		SET d_marca='".$datos[0]."',		 
-		d_modelo='".$datos[1]."',	 
-		d_motor='".$datos[2]."',	 
-		d_tipo_vehiculo='".$datos[3]."',	 
-		d_numero_placa='".$datos[4]."',	 
-		d_anio='".$datos[5]."',	 
-		c_color='".$datos[6]."',	 
-		d_kilometraje='".$datos[7]."',	 
-		d_combustible='".$datos[8]."' 
+		$sql="UPDATE dat_reg_vehiculo
+		SET d_marca='".$datos[0]."',
+		d_modelo='".$datos[1]."',
+		d_motor='".$datos[2]."',
+		d_tipo_vehiculo='".$datos[3]."',
+		d_numero_placa='".$datos[4]."',
+		d_anio='".$datos[5]."',
+		c_color='".$datos[6]."',
+		d_kilometraje='".$datos[7]."',
+		d_combustible='".$datos[8]."'
 		WHERE c_registro='".$_POST['orden']."'";
 		include('conexion.php');
 		if(!$db->conectar()){
 		    echo "No Se conecto al Servidor de base de datos";
-		}else 
+		}else
 		{
 			$db->conexion->query($sql);
 		}
@@ -408,9 +433,9 @@
 			# code...
 		}else $arr="";
 		/*echo "aqui >>>>(".sizeof($_POST['v_datos']).")\n";*/
-		
+
 		if($arr!=""){
-			for ($i=0; $i < sizeof($arr) ; $i++) { 
+			for ($i=0; $i < sizeof($arr) ; $i++) {
 				# code...
 				if ($i==0) {
 					$sql_insert.="('".$_POST['orden']."','".$arr[$i]."')";
@@ -422,7 +447,7 @@
 		include('conexion.php');
 		if(!$db->conectar()){
 		    echo "No Se conecto al Servidor de base de datos";
-		}else 
+		}else
 		{
 			$db->conexion->query($sql);
 
@@ -438,27 +463,27 @@
 		}
    			$db->desconectar();
 
-	}		
+	}
 	function subirImagenDaños()
 	{
         include('conexion.php');
 		if(!$db->conectar()){
 		    echo "No Se conecto al Servidor de base de datos";
-		}else 
+		}else
 		{
 			$form=["text-img-d-1", "text-img-d-2", "text-img-d-3", "text-img-d-4", "text-img-d-5", "img-d-1", "img-d-2", "img-d-3", "img-d-4", "img-d-5"];
-	        for ($x=5; $x <sizeof($form) ; $x++) { 
+	        for ($x=5; $x <sizeof($form) ; $x++) {
 	        	$ruta_nombre = "../imagenes/".$_POST['n_orden']."_".$form[$x].".jpg";
 	        	//echo "<br> ".$ruta_nombre;
-	        	if(move_uploaded_file($_FILES[$form[$x]]['tmp_name'], $ruta_nombre)) 
+	        	if(move_uploaded_file($_FILES[$form[$x]]['tmp_name'], $ruta_nombre))
 				{
 					//echo "El archivo ". $ruta_nombre . " ha sido subido";
 					$sql="DELETE FROM dat_reg_imagenes WHERE c_registro='".$_POST['n_orden']."' and c_imagen='".$form[$x]."'";
 					echo "$sql";
 
 					$db->conexion->query($sql);
-					$db->conexion->query('INSERT INTO dat_reg_imagenes 
-					(c_imagen,c_registro, d_imagen,d_ruta,f_ingreso) 
+					$db->conexion->query('INSERT INTO dat_reg_imagenes
+					(c_imagen,c_registro, d_imagen,d_ruta,f_ingreso)
 					VALUES ("'.$form[$x].'","'.$_POST['n_orden'].'","'.$_POST[$form[$x-5]].'","'.$ruta_nombre.'",NOW())');
 				} else{
 					echo "Ha ocurrido un error, trate de nuevo!";
@@ -474,21 +499,21 @@
         include('conexion.php');
 		if(!$db->conectar()){
 		    echo "No Se conecto al Servidor de base de datos";
-		}else 
+		}else
 		{
 			$form=["text-img-r-1", "text-img-r-2", "text-img-r-3", "text-img-r-4", "text-img-r-5", "img-r-1", "img-r-2", "img-r-3", "img-r-4", "img-r-5"];
-        	for ($x=5; $x <sizeof($form) ; $x++) { 
+        	for ($x=5; $x <sizeof($form) ; $x++) {
 	        	$ruta_nombre = "../imagenes/".$_POST['n_orden']."_".$form[$x].".jpg";
 	        	//echo "<br> ".$ruta_nombre;
-	        	if(move_uploaded_file($_FILES[$form[$x]]['tmp_name'], $ruta_nombre)) 
+	        	if(move_uploaded_file($_FILES[$form[$x]]['tmp_name'], $ruta_nombre))
 				{
 					//echo "El archivo ". $ruta_nombre . " ha sido subido";
 					$sql="DELETE FROM dat_reg_imagenes WHERE c_registro='".$_POST['n_orden']."' and c_imagen='".$form[$x]."'";
 					echo "$sql";
 
 					$db->conexion->query($sql);
-					$db->conexion->query('INSERT INTO dat_reg_imagenes 
-					(c_imagen,c_registro, d_imagen,d_ruta,f_ingreso) 
+					$db->conexion->query('INSERT INTO dat_reg_imagenes
+					(c_imagen,c_registro, d_imagen,d_ruta,f_ingreso)
 					VALUES ("'.$form[$x].'","'.$_POST['n_orden'].'","'.$_POST[$form[$x-5]].'","'.$ruta_nombre.'",NOW())');
 				} else{
 					echo "Ha ocurrido un error, trate de nuevo!";
@@ -497,5 +522,110 @@
 	        }
 		}
 		$db->desconectar();
+	}
+	function updateDatosAseguradora()
+	{
+		include('conexion.php');
+		if(!$db->conectar()){
+		    echo "No Se conecto al Servidor de base de datos";
+		}else
+		{
+			$sql="UPDATE dat_reg_aseguradora SET d_empresa='".$_POST['d_empresa']."', c_reclamo='".$_POST['c_reclamo'].
+			"', c_poliza='".$_POST['c_poliza']."' WHERE c_registro='".$_POST['n_orden']."'";
+			echo "$sql";
+			$db->conexion->query($sql);
+		}
+		$db->desconectar();
+	}
+	function cargaDatosEncargados()
+  {
+		include('conexion.php');
+		$sql="select a.c_usuario, b.d_usuario
+				from web_opciones_x_usuario_modulo a,
+				sist_usuarios b
+				Where a.c_usuario=b.c_usuario and a.c_opcion='0303'";
+				echo "$sql";
+
+		if(!$db->conectar()){
+		    echo "No Se conecto al Servidor de base de datos";
+		}else
+		{
+				$consulta = $db->conexion->query($sql);
+				$filas = mysqli_num_rows($consulta);
+				$mensaje='';
+				if ($filas === 0) {
+					$mensaje = "<p> No Se Encontraron Registros </p>";
+				} else {
+					$n=0;
+					while($resultados = mysqli_fetch_array($consulta))
+					{
+						$nombre = $resultados['d_usuario'];
+						if($n==0)
+						$mensaje.='
+							<option value="'.$resultados['c_usuario'].'" selected>' . strtoupper($resultados['c_usuario'] ).
+							' | '.strtoupper($resultados['d_usuario']).' </option>';
+						else
+						$mensaje.='
+							<option value="'.$resultados['c_usuario'].'">' . strtoupper($resultados['c_usuario'] ).
+							' | '.strtoupper($resultados['d_usuario']).' </option>';
+						$n++;
+					};//Fin while $resultados
+				}; //Fin else $filas
+					$db->desconectar();
+					echo $mensaje;
+		}
+	}
+
+	function cargaDatosAseguradora()
+	{
+		$sql='SELECT * from dat_reg_aseguradora where c_registro="'.$_POST["n_orden"].'"';
+			//echo "$sql";
+		include('conexion.php');
+		if(!$db->conectar()){
+		    echo "No Se conecto al Servidor de base de datos";
+		}else
+		{
+			$consulta = $db->conexion->query($sql);
+			//$filas = mysqli_num_rows($consulta);
+			while($resultados = mysqli_fetch_array($consulta))
+			{
+					echo "".$resultados['d_empresa'];
+					echo "|".$resultados['c_reclamo'];
+					echo "|".$resultados['c_poliza'];
+			}
+		}
+   	$db->desconectar();
+	}
+	function asignaOrden()
+	{
+		$sql='INSERT INTO
+			dat_reg_informacion_interna
+			(c_registro,
+				v_costo_estimado,
+				d_forma_pago,
+				v_adelanto_pago_tabajo,
+				f_posible_entrega,
+				d_observaciones,
+				c_usuario_encargado,
+				f_asignacion,
+				c_usuario_asigno)
+			VALUES ("'.$_POST['n_orden'].'","'.$_POST["v_costo_estimado"].'",
+				"'.$_POST["d_forma_pago"].'",
+				"'.$_POST["v_adelanto_pago_trabajo"].'",
+				"'.$_POST["f_posible_entrega"].'",
+				"'.$_POST["d_observaciones"].'",
+				"'.$_POST["c_usuario_encargado"].'",
+				NOW(),
+				"'.$_POST["c_usuario_asigno"].'")';
+			echo $_POST["n_orden"];
+		echo $sql;
+		/*include('conexion.php');
+		if(!$db->conectar()){
+		    echo "No Se conecto al Servidor de base de datos";
+		}else
+		{
+			$db->conexion->query($sql);
+		}
+   	$db->desconectar();*/
 	}
 ?>
