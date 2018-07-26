@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte_datos_orden_ingreso" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<queryString>
+		<![CDATA[select c_cliente,d_nombre,d_direccion from dat_cli_clientes]]>
+	</queryString>
+	<field name="c_cliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="d_nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="d_direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="67" splitType="Stretch">
+			<staticText>
+				<reportElement x="268" y="0" width="228" height="23"/>
+				<textElement textAlignment="Center">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[TALLER ANGEL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="23" width="752" height="26"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[BARRIO EL "HIGUERITO" CALLE PRINCIPAL FRENTE A VILLAS "", LA CEIBA, ATLANTIDA
+TEL: 2440-0632 - R.T.N.: ÑKHZFV-4]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="652" y="0" width="80" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="15" y="4" width="53" height="50"/>
+				<imageExpression class="java.lang.String"><![CDATA["C:\\xampp\\htdocs\\azucena\\elementos\\ico.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="11" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="6" width="752" height="1"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="6" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="436" splitType="Stretch">
+			<frame>
+				<reportElement x="6" y="22" width="330" height="188"/>
+				<box>
+					<pen lineWidth="1.5" lineStyle="Double"/>
+					<topPen lineWidth="1.5" lineStyle="Double"/>
+					<leftPen lineWidth="1.5" lineStyle="Double"/>
+					<bottomPen lineWidth="1.5" lineStyle="Double"/>
+					<rightPen lineWidth="1.5" lineStyle="Double"/>
+				</box>
+				<staticText>
+					<reportElement x="77" y="-21" width="170" height="22"/>
+					<box>
+						<pen lineWidth="0.25" lineStyle="Double"/>
+						<topPen lineWidth="0.25" lineStyle="Double"/>
+						<leftPen lineWidth="0.25" lineStyle="Double"/>
+						<bottomPen lineWidth="0.25" lineStyle="Double"/>
+						<rightPen lineWidth="0.25" lineStyle="Double"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Informacion del Cliente]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="13" y="7" width="65" height="19"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Codigo:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="13" y="25" width="65" height="19"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Nombre:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="13" y="45" width="65" height="19"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Direccion:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="13" y="149" width="65" height="19"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Telefono:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="79" y="7" width="161" height="19"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{c_cliente}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="79" y="26" width="221" height="18"/>
+					<box>
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Justified">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[" "+$F{d_nombre}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="79" y="45" width="235" height="94"/>
+					<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Justified" verticalAlignment="Top">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{d_direccion}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="79" y="150" width="161" height="18"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{c_cliente}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="21" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="14" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="15" splitType="Stretch"/>
+	</summary>
+</jasperReport>
