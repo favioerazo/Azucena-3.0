@@ -466,18 +466,45 @@ TEL: 2440-0632 - R.T.N.: ÑKHZFV-4]]></text>
 					<text><![CDATA[Nº Reclamo:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="88" y="4" width="122" height="17"/>
-					<textElement/>
+					<reportElement x="88" y="4" width="267" height="17"/>
+					<box>
+						<pen lineWidth="0.25" lineStyle="Dashed"/>
+						<topPen lineWidth="0.25" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.25" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+						<rightPen lineWidth="0.25" lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{d_empresa}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="88" y="24" width="122" height="17"/>
-					<textElement/>
+					<reportElement x="88" y="24" width="267" height="17"/>
+					<box>
+						<pen lineWidth="0.25" lineStyle="Dashed"/>
+						<topPen lineWidth="0.25" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.25" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+						<rightPen lineWidth="0.25" lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{c_poliza}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="88" y="43" width="122" height="17"/>
-					<textElement/>
+					<reportElement x="88" y="43" width="267" height="17"/>
+					<box>
+						<pen lineWidth="0.25" lineStyle="Dashed"/>
+						<topPen lineWidth="0.25" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.25" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+						<rightPen lineWidth="0.25" lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{c_reclamo}]]></textFieldExpression>
 				</textField>
 			</frame>
