@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteregistro" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<subDataset name="dataset1"/>
+	<subDataset name="dataset2"/>
+	<parameter name="idreg" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new Integer(13)]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT *,(((select combustible from reg_vehiculo where idvehiculo=(SELECT `idvehiculo` FROM `reg_registro` WHERE idregistro=$P{idreg})))/20)*100 as combustible FROM `reg_registro` where idregistro=$P{idreg}]]>
+	</queryString>
+	<field name="idregistro" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idcliente" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idvehiculo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha_ingreso" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha_entrega" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="empresa_seguro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="reclamo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="poliza" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="objetos_adicionales" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcion_daños" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="reparaciones" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipovehiculo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="costo" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="forma_pago" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="observaciones" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="encargado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="huellacliente" class="java.lang.Object">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="huellaencargado" class="java.lang.Object">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="entrega" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="combustible" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60">
+			<staticText>
+				<reportElement x="0" y="4" width="752" height="34"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Detalle de Registro]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="619" y="8" width="133" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="303" y="36" width="147" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Orden de Reparacion]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="481" splitType="Stretch">
+			<textField>
+				<reportElement x="159" y="52" width="137" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="159" y="97" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tipovehiculo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="97" width="98" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Tipo Vehiculo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="52" width="55" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="159" y="4" width="56" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{idregistro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="4" width="69" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Id Registro:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="28" width="69" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Id Cliente:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="159" y="28" width="56" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{idcliente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="75" width="98" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Id Vehiculo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="159" y="75" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{idvehiculo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="159" y="143" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{fecha_ingreso}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="143" width="98" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Ingreso:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="167" width="144" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Promesa Entrega:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="159" y="167" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{fecha_entrega}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="190" width="144" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Empresa Aseguradora:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="159" y="190" width="114" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{empresa_seguro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="214" width="80" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nª Reclamo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="238" width="69" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nª Poliza:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="159" y="214" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{reclamo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="159" y="238" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{poliza}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="370" y="95" width="152" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Reparaciones Solicitadas:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="526" y="95" width="191" height="81"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="373" y="181" width="53" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Costo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="526" y="181" width="99" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{costo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="526" y="204" width="99" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{forma_pago}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="372" y="204" width="110" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Forma de Pago:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="356" y="4" width="1" height="356"/>
+			</line>
+			<rectangle>
+				<reportElement x="527" y="228" width="190" height="74"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="373" y="227" width="100" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Observaciones:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="527" y="306" width="170" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{encargado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="373" y="306" width="70" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Encargado:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="528" y="96" width="187" height="81"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{reparaciones}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="528" y="228" width="190" height="74"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{observaciones}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="119" width="98" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Combustible:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="159" y="120" width="43" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{combustible}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="202" y="120" width="35" height="20"/>
+				<textElement/>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="261" width="143" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Descripcion de Daños:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="526" y="2" width="191" height="88"/>
+			</rectangle>
+			<textField>
+				<reportElement x="528" y="4" width="191" height="86"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{objetos_adicionales}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="374" y="4" width="129" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Objetos Adicionales:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="157" y="261" width="186" height="98"/>
+			</rectangle>
+			<textField>
+				<reportElement x="159" y="261" width="183" height="99"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion_daños}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="541" y="445" width="199" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="541" y="453" width="195" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Firma de "+$F{nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="371" width="461" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Terminos y Condiciones:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="383" width="460" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[1. El Taller no se Hace Responsable por Daños no Descritos en Esta Orden.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="393" width="510" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[2. Todo Reclamo sobre las Reparaciones realizadas se Hara en el termino de 48 horas. En caso de haber reclamo el vehiculo debera ser devuelo al taller dentro de este periodo.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="403" width="510" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[3. El taller no sera responsable por articulos dejados en el vehiculo, ni por daños o perdidas totales o parciales causados por incendios, inundaciones, terremoto y huracan.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="413" width="510" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[4. El personal autorizado del taller podra operar y conducir el vehiculo con el proposito de probar o realizar reparaciones externas, libreando al taller de toda responsabilidad por daños ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="423" width="510" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[sufridos o causados durante se realizan estas actividades.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="433" width="510" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[5. Las partes cambiadas al vehiculo necesarias para su reparacion son propiedad del cliente o la compañia de seguros y si estas no son retiradas al momento de retirar el vehiculo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="443" width="510" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[las mismas seran desechadas.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="453" width="510" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[6. La Garantia de este trabajo se servira unica y exclusivamente en nuestro taller.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="463" width="510" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[7. El Cliente acepta los cargos de LPS. 100.00 por cada dia de retraso en el retiro de su vehiculo despues de trasncurridos 3 dias de haber sido informado via telefono]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<summary>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="2" width="71" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Pagina "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="71" y="2" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="15" width="752" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[-- Ultima Linea --]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="690" y="5" width="46" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Azucena 2.1]]></text>
+			</staticText>
+			<image>
+				<reportElement x="662" y="2" width="25" height="22"/>
+				<imageExpression class="java.lang.String"><![CDATA["C:\\Users\\Erazo\\Desktop\\ProyectoFinal1\\img\\ico.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="113" y="4" width="528" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Nota: Al Firmar este Documento Aceptas que toda la informacion ingresada en el sistema y la mostrada en este documento es Corecta y Legitima.]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
