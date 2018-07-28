@@ -21,9 +21,28 @@ b.d_kilometraje,
 c.c_poliza,
 c.c_reclamo,
 c.d_empresa,
-c.c_registro
- from dat_cli_clientes a, dat_reg_vehiculo b, dat_reg_aseguradora c, dat_reg_registro_ordenes d
-where a.d_identidad=d.d_identidad and c.c_registro=b.c_registro and d.c_registro=c.c_registro and d.c_registro=2395000001
+c.c_registro,
+e.d_forma_pago,
+e.v_costo_estimado,
+e.v_adelanto_pago_trabajo,
+DATE_FORMAT(e.f_posible_entrega,"%Y-%m-%d") as f_posible_entrega,
+e.d_observaciones,
+(select GROUP_CONCAT(d_imagen)
+from dat_reg_imagenes
+where c_imagen like "%img-d-%" and c_registro=b.c_registro) as detalle_daños ,
+(select GROUP_CONCAT(d_imagen)
+from dat_reg_imagenes
+where c_imagen like "%img-r-%" and c_registro=b.c_registro) as detalle_reparaciones
+ from dat_cli_clientes a,
+dat_reg_vehiculo b,
+dat_reg_aseguradora c,
+dat_reg_registro_ordenes d,
+dat_reg_informacion_interna e
+where a.d_identidad=d.d_identidad
+and c.c_registro=b.c_registro
+and d.c_registro=c.c_registro
+and c.c_registro=e.c_registro
+and d.c_registro=2395000001
 LIMIT 1]]>
 	</queryString>
 	<field name="c_cliente" class="java.lang.String">
@@ -78,6 +97,27 @@ LIMIT 1]]>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="c_registro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="d_forma_pago" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="v_costo_estimado" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="v_adelanto_pago_trabajo" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="f_posible_entrega" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="d_observaciones" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="detalle_daños" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="detalle_reparaciones" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<background>
@@ -156,42 +196,42 @@ TEL: 2440-0632 - R.T.N.: ÑKHZFV-4]]></text>
 					<text><![CDATA[Informacion del Cliente:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="10" y="3" width="69" height="19"/>
+					<reportElement x="10" y="2" width="69" height="17"/>
 					<textElement>
 						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Codigo:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="10" y="23" width="69" height="19"/>
+					<reportElement x="10" y="19" width="69" height="16"/>
 					<textElement>
 						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Nombre:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="10" y="43" width="69" height="19"/>
+					<reportElement x="10" y="35" width="69" height="16"/>
 					<textElement>
 						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Direccion:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="10" y="123" width="69" height="19"/>
+					<reportElement x="10" y="115" width="69" height="19"/>
 					<textElement>
 						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Telefono:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="81" y="3" width="272" height="19"/>
+					<reportElement x="81" y="2" width="272" height="17"/>
 					<textElement>
 						<font size="12" isBold="true"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{c_cliente}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="81" y="23" width="272" height="18"/>
+					<reportElement x="81" y="19" width="272" height="15"/>
 					<box topPadding="1" leftPadding="1">
 						<pen lineWidth="0.0" lineStyle="Dashed"/>
 						<topPen lineWidth="0.0" lineStyle="Dashed"/>
@@ -200,12 +240,12 @@ TEL: 2440-0632 - R.T.N.: ÑKHZFV-4]]></text>
 						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
 					</box>
 					<textElement textAlignment="Justified">
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{d_nombre}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="81" y="43" width="272" height="79"/>
+					<reportElement x="81" y="35" width="272" height="79"/>
 					<box topPadding="1" leftPadding="3" bottomPadding="1" rightPadding="3">
 						<pen lineWidth="0.15"/>
 						<topPen lineWidth="0.15"/>
@@ -219,7 +259,7 @@ TEL: 2440-0632 - R.T.N.: ÑKHZFV-4]]></text>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{d_direccion}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="79" y="124" width="274" height="18"/>
+					<reportElement x="79" y="115" width="274" height="18"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
@@ -250,56 +290,56 @@ TEL: 2440-0632 - R.T.N.: ÑKHZFV-4]]></text>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{d_marca}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="10" y="27" width="55" height="19"/>
+					<reportElement x="10" y="24" width="55" height="19"/>
 					<textElement>
 						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Motor:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="70" y="27" width="88" height="19"/>
+					<reportElement x="70" y="24" width="88" height="19"/>
 					<textElement>
 						<font size="10" isBold="false"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{d_motor}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="11" y="50" width="55" height="19"/>
+					<reportElement x="11" y="44" width="55" height="19"/>
 					<textElement>
 						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Nº Placa:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="11" y="73" width="55" height="19"/>
+					<reportElement x="11" y="64" width="55" height="19"/>
 					<textElement>
 						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Color:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="71" y="50" width="88" height="19"/>
+					<reportElement x="71" y="44" width="88" height="19"/>
 					<textElement>
 						<font size="10" isBold="false"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{d_numero_placa}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="71" y="73" width="88" height="19"/>
+					<reportElement x="71" y="64" width="88" height="19"/>
 					<textElement>
 						<font size="10" isBold="false"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{c_color}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="11" y="89" width="132" height="16"/>
+					<reportElement x="11" y="85" width="132" height="16"/>
 					<textElement>
 						<font size="12" isBold="true" isUnderline="true" isStrikeThrough="false"/>
 					</textElement>
 					<text><![CDATA[Objetos Adicionales:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="11" y="105" width="343" height="72"/>
+					<reportElement x="11" y="102" width="343" height="72"/>
 					<box>
 						<pen lineWidth="0.25"/>
 						<topPen lineWidth="0.25"/>
@@ -313,35 +353,35 @@ TEL: 2440-0632 - R.T.N.: ÑKHZFV-4]]></text>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{d_objeto}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="257" y="27" width="97" height="19"/>
+					<reportElement x="257" y="24" width="97" height="19"/>
 					<textElement verticalAlignment="Middle">
 						<font size="10" isBold="false"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{d_tipo_vehiculo}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="165" y="27" width="88" height="19"/>
+					<reportElement x="165" y="24" width="88" height="19"/>
 					<textElement>
 						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Tipo Vehiculo:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="257" y="73" width="97" height="19"/>
+					<reportElement x="257" y="64" width="97" height="19"/>
 					<textElement verticalAlignment="Middle">
 						<font size="10" isBold="false"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{d_kilometraje}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="166" y="73" width="88" height="19"/>
+					<reportElement x="166" y="64" width="88" height="19"/>
 					<textElement>
 						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Kilometraje:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="257" y="50" width="97" height="19"/>
+					<reportElement x="257" y="44" width="97" height="19"/>
 					<textElement verticalAlignment="Middle">
 						<font size="10" isBold="true"/>
 					</textElement>
@@ -355,7 +395,7 @@ TEL: 2440-0632 - R.T.N.: ÑKHZFV-4]]></text>
 					<text><![CDATA[Modelo:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="166" y="50" width="88" height="19"/>
+					<reportElement x="166" y="44" width="88" height="19"/>
 					<textElement>
 						<font size="12" isBold="true"/>
 					</textElement>
@@ -368,18 +408,32 @@ TEL: 2440-0632 - R.T.N.: ÑKHZFV-4]]></text>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{d_modelo}]]></textFieldExpression>
 				</textField>
+				<staticText>
+					<reportElement x="166" y="83" width="88" height="19"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Combustible:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="257" y="83" width="97" height="19"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{d_combustible}]]></textFieldExpression>
+				</textField>
 			</frame>
 			<staticText>
 				<reportElement x="9" y="165" width="132" height="18"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14" isBold="true" isItalic="true" isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[Datos del Vehiculo:]]></text>
+				<text><![CDATA[Datos del Vehiculo.]]></text>
 			</staticText>
 			<frame>
 				<reportElement x="9" y="366" width="366" height="100"/>
 				<staticText>
-					<reportElement x="4" y="83" width="350" height="16"/>
+					<reportElement x="4" y="83" width="361" height="16"/>
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
 						<font size="6"/>
 					</textElement>
@@ -393,7 +447,7 @@ TEL: 2440-0632 - R.T.N.: ÑKHZFV-4]]></text>
 					<text><![CDATA[1. El Taller no se Hace Responsable por Daños no Descritos en Esta Orden.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="4" y="74" width="344" height="10"/>
+					<reportElement x="4" y="74" width="361" height="10"/>
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
 						<font size="6"/>
 					</textElement>
@@ -414,7 +468,7 @@ TEL: 2440-0632 - R.T.N.: ÑKHZFV-4]]></text>
 					<text><![CDATA[Terminos y Condiciones:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="4" y="36" width="344" height="16"/>
+					<reportElement x="4" y="36" width="361" height="16"/>
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
 						<font size="6"/>
 					</textElement>
@@ -436,7 +490,7 @@ TEL: 2440-0632 - R.T.N.: ÑKHZFV-4]]></text>
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement x="377" y="21" width="366" height="62"/>
+				<reportElement x="378" y="21" width="366" height="62"/>
 				<box>
 					<pen lineWidth="0.25" lineStyle="Double"/>
 					<topPen lineWidth="0.25" lineStyle="Double"/>
@@ -445,28 +499,28 @@ TEL: 2440-0632 - R.T.N.: ÑKHZFV-4]]></text>
 					<rightPen lineWidth="0.25" lineStyle="Double"/>
 				</box>
 				<staticText>
-					<reportElement x="17" y="4" width="71" height="17"/>
+					<reportElement x="9" y="3" width="71" height="17"/>
 					<textElement>
 						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Nombre:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="17" y="24" width="71" height="17"/>
+					<reportElement x="9" y="23" width="71" height="17"/>
 					<textElement>
 						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Nº Poliza:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="17" y="43" width="71" height="17"/>
+					<reportElement x="9" y="42" width="71" height="17"/>
 					<textElement>
 						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Nº Reclamo:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="88" y="4" width="267" height="17"/>
+					<reportElement x="80" y="3" width="274" height="17"/>
 					<box>
 						<pen lineWidth="0.25" lineStyle="Dashed"/>
 						<topPen lineWidth="0.25" lineStyle="Dashed"/>
@@ -480,7 +534,7 @@ TEL: 2440-0632 - R.T.N.: ÑKHZFV-4]]></text>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{d_empresa}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="88" y="24" width="267" height="17"/>
+					<reportElement x="80" y="23" width="274" height="17"/>
 					<box>
 						<pen lineWidth="0.25" lineStyle="Dashed"/>
 						<topPen lineWidth="0.25" lineStyle="Dashed"/>
@@ -494,7 +548,7 @@ TEL: 2440-0632 - R.T.N.: ÑKHZFV-4]]></text>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{c_poliza}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="88" y="43" width="267" height="17"/>
+					<reportElement x="80" y="42" width="274" height="17"/>
 					<box>
 						<pen lineWidth="0.25" lineStyle="Dashed"/>
 						<topPen lineWidth="0.25" lineStyle="Dashed"/>
@@ -522,6 +576,183 @@ TEL: 2440-0632 - R.T.N.: ÑKHZFV-4]]></text>
 				</textElement>
 				<text><![CDATA[Empresa Aseguradora:]]></text>
 			</staticText>
+			<frame>
+				<reportElement x="378" y="100" width="366" height="113"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Double"/>
+					<topPen lineWidth="0.25" lineStyle="Double"/>
+					<leftPen lineWidth="0.25" lineStyle="Double"/>
+					<bottomPen lineWidth="0.25" lineStyle="Double"/>
+					<rightPen lineWidth="0.25" lineStyle="Double"/>
+				</box>
+				<staticText>
+					<reportElement x="8" y="4" width="91" height="17"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Forma de Pago:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="8" y="24" width="97" height="17"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Costo Estimado:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="194" y="4" width="90" height="17"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha Entrega:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="106" y="4" width="81" height="17"/>
+					<box>
+						<pen lineWidth="0.25" lineStyle="Dashed"/>
+						<topPen lineWidth="0.25" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.25" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+						<rightPen lineWidth="0.25" lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{d_forma_pago}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="106" y="24" width="81" height="17"/>
+					<box>
+						<pen lineWidth="0.25" lineStyle="Dashed"/>
+						<topPen lineWidth="0.25" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.25" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+						<rightPen lineWidth="0.25" lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{v_costo_estimado}+" Lps."]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="286" y="4" width="68" height="17"/>
+					<box>
+						<pen lineWidth="0.25" lineStyle="Dashed"/>
+						<topPen lineWidth="0.25" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.25" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+						<rightPen lineWidth="0.25" lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{f_posible_entrega}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="195" y="24" width="90" height="17"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Adelanto:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="286" y="24" width="68" height="17"/>
+					<box>
+						<pen lineWidth="0.25" lineStyle="Dashed"/>
+						<topPen lineWidth="0.25" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.25" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+						<rightPen lineWidth="0.25" lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{v_adelanto_pago_trabajo}+" Lps."]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="8" y="61" width="346" height="46"/>
+					<box>
+						<pen lineWidth="0.15" lineStyle="Solid"/>
+						<topPen lineWidth="0.15" lineStyle="Solid"/>
+						<leftPen lineWidth="0.15" lineStyle="Solid"/>
+						<bottomPen lineWidth="0.15" lineStyle="Solid"/>
+						<rightPen lineWidth="0.15" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Justified" verticalAlignment="Top">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{d_observaciones}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="8" y="44" width="97" height="17"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Observaciones]]></text>
+				</staticText>
+			</frame>
+			<staticText>
+				<reportElement x="378" y="80" width="114" height="20"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Double"/>
+					<topPen lineWidth="0.0" lineStyle="Double"/>
+					<leftPen lineWidth="0.0" lineStyle="Double"/>
+					<bottomPen lineWidth="0.0" lineStyle="Double"/>
+					<rightPen lineWidth="0.0" lineStyle="Double"/>
+				</box>
+				<textElement>
+					<font size="14" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Datos Internos:]]></text>
+			</staticText>
+			<frame>
+				<reportElement x="378" y="216" width="366" height="224"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Double"/>
+					<topPen lineWidth="0.25" lineStyle="Double"/>
+					<leftPen lineWidth="0.25" lineStyle="Double"/>
+					<bottomPen lineWidth="0.25" lineStyle="Double"/>
+					<rightPen lineWidth="0.25" lineStyle="Double"/>
+				</box>
+				<staticText>
+					<reportElement x="9" y="4" width="127" height="16"/>
+					<textElement>
+						<font size="12" isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Daños en el Vehiculo]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="8" y="22" width="346" height="85"/>
+					<box>
+						<pen lineWidth="0.25" lineStyle="Dashed"/>
+						<topPen lineWidth="0.25" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.25" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+						<rightPen lineWidth="0.25" lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Justified"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{detalle_daños}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="8" y="109" width="305" height="16"/>
+					<textElement>
+						<font size="12" isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Reparaciones Solicitadas (Trabajo a Realizar)]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="8" y="127" width="346" height="89"/>
+					<box>
+						<pen lineWidth="0.25" lineStyle="Dashed"/>
+						<topPen lineWidth="0.25" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.25" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+						<rightPen lineWidth="0.25" lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Justified"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{detalle_reparaciones}]]></textFieldExpression>
+				</textField>
+			</frame>
 		</band>
 	</detail>
 	<columnFooter>
@@ -530,21 +761,21 @@ TEL: 2440-0632 - R.T.N.: ÑKHZFV-4]]></text>
 	<pageFooter>
 		<band height="25" splitType="Stretch">
 			<line>
-				<reportElement x="361" y="4" width="158" height="1"/>
+				<reportElement x="396" y="4" width="158" height="1"/>
 			</line>
 			<line>
 				<reportElement x="585" y="3" width="158" height="1"/>
 			</line>
 			<staticText>
-				<reportElement x="590" y="4" width="143" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Cliente]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="368" y="5" width="143" height="20"/>
+				<reportElement x="403" y="5" width="143" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Encargado]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="585" y="5" width="158" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{d_nombre}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageFooter>
 	<summary>

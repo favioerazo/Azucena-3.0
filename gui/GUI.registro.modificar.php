@@ -522,7 +522,7 @@
 <script type="text/javascript">
       $('.date-own2').datepicker({
          minViewMode: 3,
-         format: 'yyyy-mm-dd'
+         format: 'yyyy-mm-dd',
        });
   </script>
 <?php
