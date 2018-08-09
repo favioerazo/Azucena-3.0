@@ -28,17 +28,17 @@
       </div>
     </div>
     <!-- Bootstrap core JavaScript-->
-    <script src="../elementos/vendor/jquery/jquery.min.js"></script>
-    <script src="../elementos/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../include_libs/vendor/jquery/jquery.min.js"></script>
+    <script src="../include_libs/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Core plugin JavaScript-->
-    <script src="../elementos/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../include_libs/vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Page level plugin JavaScript-->
-    <script src="../elementos/vendor/datatables/jquery.dataTables.js"></script>
-    <script src="../elementos/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="../include_libs/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="../include_libs/vendor/datatables/dataTables.bootstrap4.js"></script>
     <!-- Custom scripts for all pages-->
-    <script src="../elementos/js/sb-admin.min.js"></script>
+    <script src="../include_libs/js/sb-admin.min.js"></script>
     <!-- Custom scripts for this page
-    <script src="../elementos/js/sb-admin-datatables.min.js"></script>-->
+    <script src="../include_libs/js/sb-admin-datatables.min.js"></script>-->
   </div></div></div></div>
 
 </body>

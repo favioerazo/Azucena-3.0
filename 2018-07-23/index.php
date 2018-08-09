@@ -23,11 +23,11 @@ echo "<META HTTP-EQUIV='REFRESH' CONTENT='0;URL=gui/index.php'>";
       <title>Azucena 3.0
       </title>
       <!-- Bootstrap core CSS-->
-      <link href="elementos/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <link href="include_libs/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
       <!-- Custom fonts for this template-->
-      <link href="elementos/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+      <link href="include_libs/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
       <!-- Custom styles for this template-->
-      <link href="elementos/css/sb-admin.css" rel="stylesheet">
+      <link href="include_libs/css/sb-admin.css" rel="stylesheet">
       <script>
         function loadImage() {
             setTimeout(function() {
@@ -71,7 +71,7 @@ function getRealIP() {
       echo '<div class="container">
         <div class="card card-login mx-auto mt-5">
           <center><div class="card-header">LOGIN </div></center>
-        <img id="profile-img" class="profile-img-card" src="elementos/logo.png" />
+        <img id="profile-img" class="profile-img-card" src="include_libs/logo.png" />
                 <p id="profile-name" class="profile-name-card"></p>
           <div class="card-body">
         <form action="core/core.login.php" method="post" >
@@ -102,10 +102,10 @@ function getRealIP() {
         </div>
       </div>
       <!-- Bootstrap core JavaScript-->
-      <script src="elementos/vendor/jquery/jquery.min.js"></script>
-      <script src="elementos/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="include_libs/vendor/jquery/jquery.min.js"></script>
+      <script src="include_libs/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
       <!-- Core plugin JavaScript-->
-      <script src="elementos/vendor/jquery-easing/jquery.easing.min.js"></script>
+      <script src="include_libs/vendor/jquery-easing/jquery.easing.min.js"></script>
       <script>
         function myFunction() {
           var x = document.getElementById("exampleInputPassword1");

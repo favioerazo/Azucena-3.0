@@ -229,7 +229,7 @@ function coma(e) {
         }
  
         /**
-         * Funcion para eliminar los elementos
+         * Funcion para eliminar los include_libs
          * Tiene que recibir el elemento pulsado
          */
         function eliminar(elemento)
@@ -264,7 +264,7 @@ function coma(e) {
         });
     </script>
 
-    <script src="../elementos/jquery.maskedinput.min.js" type="text/javascript"></script>
+    <script src="../include_libs/jquery.maskedinput.min.js" type="text/javascript"></script>
 
 
 

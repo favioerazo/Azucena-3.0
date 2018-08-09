@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte_datos_orden_ingreso_objetos_adicionales" language="groovy" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<queryString>
+		<![CDATA[select c_cliente,
+d_nombre,
+d_direccion,(SELECT d_telefono from dat_cli_telefono where d_identidad=c.d_identidad limit 1) as telefono,
+(SELECT
+    GROUP_CONCAT(b.d_objeto)
+FROM
+      dat_reg_objetos_x_vehiculo a, dat_reg_vehiculo_objetos_adic b where a.c_objeto=b.c_objeto ) as d_objeto
+ from dat_cli_clientes c
+]]>
+	</queryString>
+	<field name="c_cliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="d_nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="d_direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefono" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="d_objeto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="numeroobjeto" class="java.lang.String" calculation="Count"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="12" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="13" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement x="19" y="0" width="100" height="18"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Objetos Adicionales]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="19" y="0" width="207" height="34"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{d_objeto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="16" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="10" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="7" splitType="Stretch"/>
+	</summary>
+</jasperReport>

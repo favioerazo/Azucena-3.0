@@ -58,15 +58,15 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link type="text/css" rel="stylesheet" href="http://localhost/materialize/css/materialize.min.css"  />-->
   <!-- Bootstrap core CSS-->
-  <link href="../elementos/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../include_libs/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
   
-  <link href="../elementos/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="../include_libs/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
  
   <!-- Page level plugin CSS-->
-  <link href="../elementos/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="../include_libs/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
-  <link href="../elementos/css/sb-admin.css" rel="stylesheet">
+  <link href="../include_libs/css/sb-admin.css" rel="stylesheet">
 </head>
 
 <body class="fixed-nav sticky-footer " id="page-top" >

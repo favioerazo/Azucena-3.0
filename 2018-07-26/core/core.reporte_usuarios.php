@@ -3,8 +3,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-include_once('../elementos/reportes/class/tcpdf/tcpdf.php');
-include_once("../elementos/reportes/class/PHPJasperXML.inc.php");
+include_once('../include_libs/reportes/class/tcpdf/tcpdf.php');
+include_once("../include_libs/reportes/class/PHPJasperXML.inc.php");
 include_once ('conf_reportes.php');
 
 

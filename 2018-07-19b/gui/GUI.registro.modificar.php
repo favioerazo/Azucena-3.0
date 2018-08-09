@@ -35,7 +35,7 @@
     
 
 <script src="../core/core.funciones.javascript.js"></script> 
-<script src="../elementos/jscolor.js"></script>
+<script src="../include_libs/jscolor.js"></script>
 
     <!-- Card body -->
     <div class="card-body">

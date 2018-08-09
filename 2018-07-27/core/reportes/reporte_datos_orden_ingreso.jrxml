@@ -116,7 +116,7 @@ TEL: 2440-0632 - R.T.N.: ÑKHZFV-4]]></text>
 			</textField>
 			<image>
 				<reportElement x="7" y="4" width="53" height="50"/>
-				<imageExpression class="java.lang.String"><![CDATA["C:\\xampp\\htdocs\\azucena\\elementos\\ico.png"]]></imageExpression>
+				<imageExpression class="java.lang.String"><![CDATA["C:\\xampp\\htdocs\\azucena\\include_libs\\ico.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="255" y="54" width="237" height="18"/>

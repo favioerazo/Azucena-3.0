@@ -32,7 +32,7 @@ exit;
   echo '<li class="breadcrumb-item active">INICIO</li>
       </ol>';
       ?>
-<img src="../elementos/fondomenu.PNG" class="img-fluid modal-content" alt="Responsive image">
+<img src="../include_libs/fondomenu.PNG" class="img-fluid modal-content" alt="Responsive image">
 
       <?php 
 
@@ -106,13 +106,13 @@ exit;
   <meta name="author" content="">
   <title>Favio Sistemas - SAM APP - Control AC</title>
   <!-- Bootstrap core CSS-->
-  <link href="../elementos/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../include_libs/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
-  <link href="../elementos/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="../include_libs/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Page level plugin CSS-->
-  <link href="../elementos/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="../include_libs/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
-  <link href="../elementos/css/sb-admin.css" rel="stylesheet">
+  <link href="../include_libs/css/sb-admin.css" rel="stylesheet">
 
   <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css'>
