@@ -22,7 +22,7 @@
 ?>
 <!-- Card -->
 
-  <li class="breadcrumb-item active">Nuevo Registro</li>
+  <li class="breadcrumb-item active"> Ordenes </li>
 </ol>
 <div class="card">
 
@@ -116,7 +116,7 @@
             </div>
             </div>
             <label><i class="fa fa-adjust"></i> Modelo</label>
-            <input class="form-control" type="text" required id="form1-modelo"></input>
+            <input class="form-control" type="text" required id="form1-modelo" onfocus="this.select()"></input>
             <label><i class="fa fa-cogs"></i> Motor</label>
             <input class="form-control" type="text" id="form1-motor" required></input>
             <label><i class="fa fa-automobile"></i> Tipo de Vehiculo</label>
@@ -133,13 +133,13 @@
             </select>
             </div>
             <label><i class="fa fa-barcode"></i> Placa</label>
-            <input class="form-control" id="form1-placa" type="text" required></input>
+            <input class="form-control" id="form1-placa" type="text"  required onfocus="this.select()"></input>
             <label> <i class="fa fa-calendar"></i>A&ntilde;o</label>
             <input class="date-own form-control" id="form1-anio" value="2017" type="number" required readonly=""></input>
             <label><i class="fa fa-pencil"></i> Color</label>
-            <input class="form-control jscolor" id="form1-color" type="text" ></input>
+            <input class="form-control jscolor" id="form1-color" type="text" onfocus="this.select()" ></input>
             <label><i class="fa fa-road"></i> Kilometraje</label>
-            <input class="form-control" id="form1-kilometraje"  type="number" min="0" max="1000000" step="100" required ></input>
+            <input class="form-control" id="form1-kilometraje"  type="number" min="0" max="1000000" step="100" required  onfocus="this.select()"></input>
             <label><i class="fa fa-flask"></i> Combustible</label>
 
             <select class="form-control" id="form1-combustible" >
@@ -167,11 +167,11 @@
         </div>
         <div class="card-body">
             <label><i class="fa fa-ambulance" ></i> Nombre de Compañia</label>
-          <input class="form-control" type="text" id="d_nombre_aseguradora" ></input><br>
+          <input class="form-control" type="text" onfocus="this.select()" id="d_nombre_aseguradora" ></input><br>
             <label><i class="fa fa-handshake-o" ></i> Numero de Reclamo</label>
-          <input class="form-control" type="text" id="c_reclamo_aseguradora"></input><br>
+          <input class="form-control" type="text" onfocus="this.select()" id="c_reclamo_aseguradora"></input><br>
             <label><i class="fa fa-id-badge"></i> Numero de Poliza</label>
-          <input class="form-control" type="text" id="c_poliza_aseguradora"></input><br>
+          <input class="form-control" type="text" onfocus="this.select()" id="c_poliza_aseguradora" value="-- N/A --"></input><br>
           <button type="button" class="btn btn-warning pull-rigth" value="atras" onclick="mostrarForm('2','3');updateDatosAseguradora();"><i class="fa fa-toggle-left"> </i></button>
           <button type="button" class="btn btn-info pull-rigth" value="SIGUIENTE" onclick="mostrarForm('4','3');updateDatosAseguradora();"> <i class="fa fa-toggle-right"></i></button>
         </div>
@@ -184,16 +184,16 @@
         </div>
         <div class="card-body">
           <form enctype="multipart/form-data" id="formImagenesDaños" method="POST">
-          <textarea name="text-img-d-1" id="text-img-d-1" type="text" class="form-control" rows="3" placeholder="Detalle la imagen #1."  onKeyPress="return coma(event)" required></textarea>
+          <textarea name="text-img-d-1" id="text-img-d-1" type="text"  onfocus="this.select()"class="form-control" rows="3" placeholder="Detalle la imagen #1."  onKeyPress="return coma(event)" required></textarea>
           <input class="form-control btn-primary" value="fakeImg.jpg" id="img-d-1" name="img-d-1" type="file" accept="image/jpg,image/png,image/jpeg,image/gif"> </input><br> <!--<button type="button" class="btn btn-info pull-rigth" value="guardar" onclick="cargaImagenesDaños();" id="btnsig4"> <i class="fa fa-toggle-right"></i></button>--><hr/>
 
-          <textarea name="text-img-d-2"  id="text-img-d-2"  class="form-control"  type="text" rows="3" placeholder="Detalle la imagen #2."  onKeyPress="return coma(event)" required></textarea>
+          <textarea name="text-img-d-2"  id="text-img-d-2"  class="form-control"  type="text" onfocus="this.select()" rows="3" placeholder="Detalle la imagen #2."  onKeyPress="return coma(event)" required></textarea>
           <input class="form-control btn-primary" id="img-d-2" name="img-d-2" type="file" accept="image/jpg,image/png,image/jpeg,image/gif"></input><br><hr/>
-          <textarea  name="text-img-d-3" id="text-img-d-3" type="text" class="form-control" rows="3" placeholder="Detalle la imagen #3."  onKeyPress="return coma(event)" required></textarea>
+          <textarea  name="text-img-d-3" id="text-img-d-3" type="text" onfocus="this.select()" class="form-control" rows="3" placeholder="Detalle la imagen #3."  onKeyPress="return coma(event)" required></textarea>
           <input class="form-control btn-primary" id="img-d-3" name="img-d-3"  type="file" accept="image/jpg,image/png,image/jpeg,image/gif"></input><br><hr/>
-          <textarea name="text-img-d-4" id="text-img-d-4" type="text" class="form-control" rows="3" placeholder="Detalle la imagen #4." onKeyPress="return coma(event)" required></textarea>
+          <textarea name="text-img-d-4" id="text-img-d-4" type="text" onfocus="this.select()" class="form-control" rows="3" placeholder="Detalle la imagen #4." onKeyPress="return coma(event)" required></textarea>
           <input class="form-control btn-primary" id="img-d-4" name="img-d-4"  type="file" accept="image/jpg,image/png,image/jpeg,image/gif"></input><br><hr/>
-          <textarea name="text-img-d-5"  id="text-img-d-5" type="text" class="form-control" rows="3" placeholder="Detalle la imagen #5." onKeyPress="return coma(event)" required></textarea>
+          <textarea name="text-img-d-5"  id="text-img-d-5" type="text"  onfocus="this.select()" class="form-control" rows="3" placeholder="Detalle la imagen #5." onKeyPress="return coma(event)" required></textarea>
           <input class="form-control btn-primary" id="img-d-5" name="img-d-5"  type="file" accept="image/jpg,image/png,image/jpeg,image/gif"></input><br><hr/>
           </form>
           <button type="button" class="btn btn-warning pull-rigth" value="atras" onclick="mostrarForm('3','4');" disabled> <i class="fa fa-toggle-left" ></i></button>
@@ -208,17 +208,17 @@
         </div>
         <div class="card-body">
           <form enctype="multipart/form-data" id="formImagenesReparaciones" method="POST">
-          <textarea name="text-img-r-1" id="text-img-r-1" type="text" class="form-control" rows="3" placeholder="Detalle la imagen #1."  onKeyPress="return coma(event)" required></textarea>
+          <textarea name="text-img-r-1" id="text-img-r-1" type="text" class="form-control"  onfocus="this.select()" rows="3" placeholder="Detalle la imagen #1."  onKeyPress="return coma(event)" required></textarea>
           <input class="form-control btn-primary" id="img-r-1" name="img-r-1" type="file" accept="image/jpg,image/png,image/jpeg,image/gif" </input><br>
           <!--<button type="button" class="btn btn-info pull-rigth" value="guardar" onclick="valorImagen();" id="btnsig4"> <i class="fa fa-toggle-right"></i></button><hr/>
 -->
-          <textarea name="text-img-r-2"  id="text-img-r-2"  class="form-control"  type="text" rows="3" placeholder="Detalle la imagen #2."  onKeyPress="return coma(event)" required></textarea>
+          <textarea name="text-img-r-2"  id="text-img-r-2"  class="form-control"  onfocus="this.select()" type="text" rows="3" placeholder="Detalle la imagen #2."  onKeyPress="return coma(event)" required></textarea>
           <input class="form-control btn-primary" id="img-r-2" name="img-r-2" type="file" accept="image/jpg,image/png,image/jpeg,image/gif"></input><br><hr/>
-          <textarea  name="text-img-r-3" id="text-img-r-3" type="text" class="form-control" rows="3" placeholder="Detalle la imagen #3."  onKeyPress="return coma(event)" required></textarea>
+          <textarea  name="text-img-r-3" id="text-img-r-3" onfocus="this.select()" type="text" class="form-control" rows="3" placeholder="Detalle la imagen #3."  onKeyPress="return coma(event)" required></textarea>
           <input class="form-control btn-primary" id="img-r-3" name="img-r-3"  type="file" accept="image/jpg,image/png,image/jpeg,image/gif"></input><br><hr/>
-          <textarea name="text-img-r-4" id="text-img-r-4" type="text" class="form-control" rows="3" placeholder="Detalle la imagen #4." onKeyPress="return coma(event)" required></textarea>
+          <textarea name="text-img-r-4" id="text-img-r-4" onfocus="this.select()" type="text" class="form-control" rows="3" placeholder="Detalle la imagen #4." onKeyPress="return coma(event)" required></textarea>
           <input class="form-control btn-primary" id="img-r-4" name="img-r-4"  type="file" accept="image/jpg,image/png,image/jpeg,image/gif"></input><br><hr/>
-          <textarea name="text-img-r-5"  id="text-img-r-5" type="text" class="form-control" rows="3" placeholder="Detalle la imagen #5." onKeyPress="return coma(event)" required></textarea>
+          <textarea name="text-img-r-5"  id="text-img-r-5" onfocus="this.select()" type="text" class="form-control" rows="3" placeholder="Detalle la imagen #5." onKeyPress="return coma(event)" required></textarea>
           <input class="form-control btn-primary" id="img-r-5" name="img-r-5"  type="file" accept="image/jpg,image/png,image/jpeg,image/gif"></input><br><hr/>
           </form>
           <button type="button" class="btn btn-warning pull-rigth" value="SIGUIENTE" onclick="mostrarForm('4','5');" id="btnsig4" disabled> <i class="fa fa-toggle-left"></i></button>
@@ -236,7 +236,7 @@
             <label><i class="fa fa-ambulance"></i> Costo Estimado</label>
             <div class="input-group">
               <center><span class="form-control" disabled>LPS.</span></center>
-            <input id="costo_estimado" placeholder="00.00" class="form-control" type="number" ></input><br>
+            <input  onfocus="this.select()" id="costo_estimado" placeholder="00.00" class="form-control" type="number" ></input><br>
             </div>
             <label><i class="fa fa-ambulance"></i> Forma de Pago</label>
             <select onchange="formapago();" class="form-control" id="forma-pago">
@@ -246,16 +246,16 @@
               <option>CHEQUE</option>
               <option>OTRO</option>
             </select>
-          <input class="form-control" id="forma-pago-otro" placeholder="Detalle la forma de pago" type="text" hidden=""></input>
+          <input class="form-control"  onfocus="this.select()" id="forma-pago-otro" placeholder="Detalle la forma de pago" type="text" hidden=""></input>
 
           <input type="checkbox" value="ch-adelanto" id="ch-a" onClick="habilitaAdelanto()">
           <label class="control-label" onClick="habilitaAdelanto()" for="ch-a"><font size="4.5"> Habra Adelanto?</font></label>
-          <input  class="form-control" hidden type="number"  id="txt-adelanto" ></input><br>
+          <input  class="form-control"  onfocus="this.select()" hidden type="number"  id="txt-adelanto" ></input><br>
           <hr>
             <label><i class="fa fa-ambulance"></i> Fecha Posible Entrega (AAAA-MM-DD)</label>
           <input class="form-control date-own2" type="text" readonly id="fecha-entrega"></input><br>
             <label><i class="fa fa-ambulance"></i> Observaciones</label>
-          <textarea class="form-control" type="text" id="txt-observaciones"> -- NINGUNA OBSERVACION -- </textarea><br>
+          <textarea class="form-control"   onfocus="this.select()" type="text" id="txt-observaciones"> -- NINGUNA OBSERVACION -- </textarea><br>
             <label><i class="fa fa-ambulance"></i> Encargado</label>
 
           <div class="input-group">

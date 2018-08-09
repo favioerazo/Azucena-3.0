@@ -57,7 +57,7 @@ $telefono=0;
 ?>
 <!-- Card -->
 
-  <li class="breadcrumb-item active">Usuarios</li>
+  <li class="breadcrumb-item active">Clientes</li>
 </ol>
 <div class="card">
 
@@ -98,7 +98,7 @@ $telefono=0;
                 <select name="genero" class="form-control" id="exampleFormControlSelect1" title="Seleccione..." required >
                   <option>Masculino</option>
                   <option>Femenino</option>
-                </select>          
+                </select>
               </div>
             </div>
 
@@ -118,24 +118,24 @@ $telefono=0;
                   <div class="input-group">
                 <input name="tel" type="text" id="tel" class="form-control"  style="text-transform:uppercase" value="" placeholder="9445-3053" ><i type="submit" style='font-size:24px;color:green' class="fa fa-plus font-weight-light  btn btn-info" onclick="return add_li()" value="Añadir"></i>
                 <input type="hidden" id="vartel" value="" name=""></div>
-                 <!-- <input type="submit" onclick="return add_li()" value="Añadir"> 
+                 <!-- <input type="submit" onclick="return add_li()" value="Añadir">
                  </form>-->
                 <ul id="listaTelefonos">
-                  <!--<li id="tel0">9532-6210 
+                  <!--<li id="tel0">9532-6210
                     <span onclick="eliminar(this)">
-                      <i class="fa fa-trash prefix grey-text" style="font-size:24px;color:red">                        
-                      </i> 
-                    </span> 
+                      <i class="fa fa-trash prefix grey-text" style="font-size:24px;color:red">
+                      </i>
+                    </span>
                     <input type="hidden" name="tel0" value="9532-6210">
                   </li>-->
                 </ul>
             </div>
 
-            <!-- Material input password 
+            <!-- Material input password
             <div class="md-form">
                 <i class="fa fa-lock prefix grey-text"></i>
                 <label for="materialFormCardPasswordEx" class="font-weight-light">Contraseña</label>
-                <input name="pass" type="password" id="materialFormCardPasswordEx" class="form-control" required>    
+                <input name="pass" type="password" id="materialFormCardPasswordEx" class="form-control" required>
                 <input type="checkbox" onclick="myFunction()">Mostrar
             </div>
           </p>-->
@@ -159,20 +159,20 @@ $telefono=0;
 </div>
 
 
-<script> 
-function coma(e) { 
-    tecla=(document.all) ? e.keyCode : e.which; 
+<script>
+function coma(e) {
+    tecla=(document.all) ? e.keyCode : e.which;
     if (tecla==44 || tecla==34 || tecla==39 || tecla==43
-      || tecla==46 || tecla==39) { 
-        //alert('Sin comas, tío'); 
-        return false; 
-    } 
-} 
+      || tecla==46 || tecla==39) {
+        //alert('Sin comas, tío');
+        return false;
+    }
+}
 </script>
 
 <script>
         // http://www.lawebdelprogramador.com
- 
+
         /**
          * Funcion que añade un <li> dentro del <ul>
          */
@@ -197,17 +197,17 @@ function coma(e) {
 		            //alert("El valor es: "+(tmp));
 		            //valor=valor+1;
 		            //document.getElementById("listaTelefonos").value=valor;
-		            tmp++;		         	
+		            tmp++;
             		document.getElementById("vartel").value+=nuevoLi+",";
 
 		         }
             }else{
               alert("DEBE INGRESAR UN VALOR EN EL CAMPO DE TELEFONO");
             }
-            
+
             return false;
         }
- 
+
         /**
          * Funcion que busca si existe ya el <li> dentrol del <ul>
          * Devuelve true si no existe.
@@ -222,7 +222,7 @@ function coma(e) {
             }
             return true;
         }
- 
+
         /**
          * Funcion para eliminar los include_libs
          * Tiene que recibir el elemento pulsado
@@ -243,7 +243,7 @@ function coma(e) {
         x.type = "password";
     }
 }
-  
+
 </script>
 
      <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>

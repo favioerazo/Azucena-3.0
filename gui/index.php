@@ -18,17 +18,158 @@ if($now > $_SESSION['expire']) {
 exit;
 }
 
-
+include("../core/conexion.php");
+date_default_timezone_set ( 'America/Tegucigalpa');
   include 'formheader.php';
   echo '<li class="breadcrumb-item active">INICIO</li>
       </ol>';
+
+      $sql="SELECT a.c_registro, b.d_nombre, (select d_usuario from sist_usuarios where c_usuario=a.c_usuario_asigno) as d_usuario, a.f_fecha_asigno
+      from dat_reg_registro_ordenes a,
+      dat_cli_clientes b,
+      dat_reg_informacion_interna c
+      where c.c_usuario_encargado='".
+      explode(",",$_SESSION["username"])[0]."' and b.c_cliente=a.c_cliente
+      and c.c_registro=a.c_registro
+      AND a.c_estatus_solicitud='A'";
+      //echo "Usuario: ".explode(",",$_SESSION["username"])[0];
+      //echo "$sql";
+      if(!$db->conectar()){
+          //exit;//
+          echo "No Se conecto al Servidor de base de datos";
+      }else
+      {
+        //echo "SELECT c_objeto from dat_reg_objetos_x_vehiculo WHERE c_registro='".$_POST['orden']."'";
+        //$objetosvehiculo=array();
+        $consulta = $db->conexion->query($sql);
+        echo '<!-- Example Notifications Card-->
+
+           <div class="card bg-warning">
+               <div><div class="card mb-3 text-black bg-warning">
+                 <div class="card-header">
+                   <i class="fa fa-bell-o"></i> Trabajos Asignados </div>
+                 <div class="list-group list-group-flush small">';
+                 $filas = mysqli_num_rows($consulta);
+                 if ($filas === 0) {
+                   echo "<a class='bg-danger list-group-item list-group-item-action'> No Se Encontraron Registros </a>";
+                 }
+        while($resultados = mysqli_fetch_array($consulta))
+        {
+          //array_push($objetosvehiculo,$resultados['c_objeto']);
+            echo '<a class="text-black bg-warning list-group-item list-group-item-action" href="../core/core.reporte_orden.php?orden='.$resultados['c_registro'].'" target="_blank" onclick="window.open(this.href, this.target, \'width=800,height=800\'); return false;">
+              <div class="media ">
+                <img class="d-flex mr-3 rounded-circle" src="../include_libs/cliente_opt.PNG" alt="">
+                <div class="media-body">
+                  <strong>'.$resultados['d_usuario'].'</strong> te asigno un nuevo trabajo de
+                  <strong> '.$resultados['d_nombre'].'</strong> con orden Nº <strong>'.$resultados['c_registro'].
+                  '</strong><div class="text-muted smaller">Asignado > '.$resultados['f_fecha_asigno'].'</div>
+                </div>
+              </div>
+            </a>';
+        }
+        $hoy = getdate();
+            echo '  <a class=" text-black bg-warning list-group-item list-group-item-action" href="#">View all activity...</a>
+            </div>
+            <div class="card-footer small text-muted">Actualizado Hoy a las '.getdate()['hours'].':'.getdate()['minutes'].':'.getdate()['seconds'].'</div>
+          </div>
+        </div>
+      </div></br>';
+
+            $sql="SELECT a.c_registro, b.d_nombre, (select d_usuario from sist_usuarios where c_usuario=a.c_usuario_asigno) as d_usuario, a.f_fecha_asigno
+            from dat_reg_registro_ordenes a,
+            dat_cli_clientes b,
+            dat_reg_informacion_interna c
+            where c.c_usuario_encargado='".
+            explode(",",$_SESSION["username"])[0]."' and b.c_cliente=a.c_cliente
+            and c.c_registro=a.c_registro
+            AND a.c_estatus_solicitud='P'";
+            $consulta = $db->conexion->query($sql);
+            echo '<!-- Example Notifications Card-->
+
+               <div class="card bg-info">
+                   <div><div class="card bg-info mb-3">
+                     <div class="card-header">
+                       <i class="fa fa-bell-o"></i> Trabajos en Proceso </div>
+                     <div class="list-group list-group-flush small">';
+                     $filas = mysqli_num_rows($consulta);
+                     if ($filas === 0) {
+                       echo "<a class='bg-info text-white list-group-item list-group-item-action'> No Se Encontraron Registros </a>";
+                     }
+            while($resultados = mysqli_fetch_array($consulta))
+            {
+              //array_push($objetosvehiculo,$resultados['c_objeto']);
+                echo '<a class="bg-info list-group-item list-group-item-action" href="../core/core.reporte_orden.php?orden='.$resultados['c_registro'].'" target="_blank" onclick="window.open(this.href, this.target, \'width=800,height=800\'); return false;">
+                  <div class="media ">
+                    <img class="d-flex mr-3 rounded-circle" src="../include_libs/cliente_opt.PNG" alt="">
+                    <div class="media-body">
+                      <strong>'.$resultados['d_usuario'].'</strong> te asigno un nuevo trabajo de
+                      <strong> '.$resultados['d_nombre'].'</strong> con orden Nº <strong>'.$resultados['c_registro'].
+                      '</strong><div class="text-muted smaller">Asignado > '.$resultados['f_fecha_asigno'].'</div>
+                    </div>
+                  </div>
+                </a>';
+            }
+            $hoy = getdate();
+                echo '  <a class="bg-info list-group-item list-group-item-action" href="#">View all activity...</a>
+                </div>
+                <div class="card-footer small text-muted">Actualizado Hoy a las '.getdate()['hours'].':'.getdate()['minutes'].':'.getdate()['seconds'].'</div>
+              </div>
+            </div>
+          </div></br>';
+
+                $sql="SELECT a.c_registro, b.d_nombre, (select d_usuario from sist_usuarios where c_usuario=a.c_usuario_asigno) as d_usuario, a.f_fecha_asigno
+                from dat_reg_registro_ordenes a,
+                dat_cli_clientes b,
+                dat_reg_informacion_interna c
+                where c.c_usuario_encargado='".
+                explode(",",$_SESSION["username"])[0]."' and b.c_cliente=a.c_cliente
+                and c.c_registro=a.c_registro
+                AND (a.c_estatus_solicitud='E' or a.c_estatus_solicitud='C')";
+                $consulta = $db->conexion->query($sql);
+                echo '<!-- Example Notifications Card-->
+
+                   <div class="card bg-success ">
+                       <div><div class="card bg-success mb-3">
+                         <div class="card-header">
+                           <i class="fa fa-bell-o"></i> Trabajos Ejecutados / Completados </div>
+                         <div class="list-group list-group-flush small">';
+                         $filas = mysqli_num_rows($consulta);
+                         if ($filas === 0) {
+                           echo "<a class='bg-success text-white list-group-item list-group-item-action'> No Se Encontraron Registros </a>";
+                         }
+                while($resultados = mysqli_fetch_array($consulta))
+                {
+                  //array_push($objetosvehiculo,$resultados['c_objeto']);
+                    echo '<a class="bg-success list-group-item list-group-item-action" href="../core/core.reporte_orden.php?orden='.$resultados['c_registro'].'" target="_blank" onclick="window.open(this.href, this.target, \'width=800,height=800\'); return false;">
+                      <div class="media ">
+                        <img class="d-flex mr-3 rounded-circle" src="../include_libs/cliente_opt.PNG" alt="">
+                        <div class="media-body">
+                          El trabajo Asignado por <strong>'.$resultados['d_usuario'].'</strong> de
+                          <strong> '.$resultados['d_nombre'].'</strong> con orden Nº <strong>'.$resultados['c_registro'].
+                          '</strong> esta Finalizado.<div class="text-muted smaller">Asignado > '.$resultados['f_fecha_asigno'].'</div>
+                        </div>
+                      </div>
+                    </a>';
+                }
+                $hoy = getdate();
+                    echo '  <a class="bg-success list-group-item list-group-item-action" href="#">View all activity...</a>
+                    </div>
+                    <div class="card-footer small text-muted">Actualizado Hoy a las '.getdate()['hours'].':'.getdate()['minutes'].':'.getdate()['seconds'].'</div>
+                  </div>
+                </div>
+              </div></br>';
+      }
+      $db->desconectar();
       ?>
 <img src="../include_libs/fondomenu.PNG" class="img-fluid modal-content" alt="Responsive image">
 
-      <?php 
+      <?php
 
+
+
+/*
    echo '<!-- Example Notifications Card-->
-         
+
       <div class="card">
           <div><div class="card mb-3">
             <div class="card-header">
@@ -36,7 +177,7 @@ exit;
             <div class="list-group list-group-flush small">
               <a class="list-group-item list-group-item-action" href="#">
                 <div class="media">
-                  <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                  <img class="d-flex mr-3 rounded-circle" src="../include_libs/cliente.PNG" alt="">
                   <div class="media-body">
                     <strong>David Miller </strong>posted a new article to
                     <strong>David Miller Website</strong>.
@@ -80,7 +221,7 @@ exit;
             <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
           </div>
         </div>
-      </div>';
+      </div>';*/
 
   include 'formfooter.php';
 

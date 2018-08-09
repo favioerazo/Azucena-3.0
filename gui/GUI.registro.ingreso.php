@@ -22,11 +22,11 @@
 ?>
 <!-- Card -->
 
-  <li class="breadcrumb-item active">Nuevo Registro</li>
+  <li class="breadcrumb-item active"> Ordenes </li>
 </ol>
 <div class="card">
 
-<script src="../core/core.funciones.javascript.js"></script> 
+<script src="../core/core.funciones.javascript.js"></script>
     <!-- Card body -->
     <div class="card-body">
       <?php
@@ -40,19 +40,19 @@
               </div>';
     }
 ?>
- <!-- Modal Clientes--> 
+ <!-- Modal Clientes-->
   <div class="modal fade" id="registroConfirmacion" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content ">
-        <div class="modal-header">          
+        <div class="modal-header">
           <h4 class="modal-title"><CENTER>Orden de ingreso</CENTER></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
           <!-- Identidad -->
-            <div class="md-form" id="divmodalconfirma">                
-              
-            </div> 
+            <div class="md-form" id="divmodalconfirma">
+
+            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-success"  data-dismiss="modal" onclick="registroInsert(<?php $datos=explode(",",$_SESSION['username']); $nombre=explode(" ",$datos[0]); echo "'".$nombre[0]."'";?>);"><i class="fa fa-check"></i> Confirmar</button>
@@ -71,7 +71,7 @@
         <div class="card-body">
           <div class="input-group">
           <input class="form-control " type="text" id="clienteregistro" readonly placeholder="Buscar"></input><i class="fa fa-search btn btn-primary" data-toggle="modal"  onclick="cargaInicial()" data-target="#clientemodal" id="buscacliente"></i><br>
-          
+
         </div><br>
         <button  type="button" class="btn btn-success pull-rigth" value="SIGUIENTE"  id="btnsig1" data-toggle="modal"  data-target="#registroConfirmacion" onclick="confirmaCliente()" disabled>Generar <i class="fa fa-toggle-right" ></i>
           </button>
@@ -163,10 +163,10 @@
        <!-- Modal Objetos Adicionales-->
   <div class="modal fade" id="registromodal" role="dialog">
     <div class="modal-dialog">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">          
+        <div class="modal-header">
           <h4 class="modal-title"><CENTER>OBJETOS ADICIONALES EN EL VEHICULO</CENTER></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
@@ -190,7 +190,7 @@
                 <input type="checkbox" name=""> Cenicero</input><br>
                 <input type="checkbox" name=""> Triangulos</input><br>
                 <input type="checkbox" name=""> Extintor</input><br>
-            </div> 
+            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -202,16 +202,16 @@
 
       <div class="modal fade" id="clientemodal" role="dialog">
     <div class="modal-dialog modal-lg">
-    
+
       <!-- Modal Clientes-->
       <div class="modal-content ">
-        <div class="modal-header">          
+        <div class="modal-header">
           <h4 class="modal-title"><CENTER>Busqueda de Clientes</CENTER></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
           <!-- Identidad -->
-            <div class="md-form">                
+            <div class="md-form">
               <label><h3>Ingrese un nombre:</h3> </label>
 
     <input type="text" maxlength="30" name="datosCliente" id="datosCliente" placeholder="Buscar" class="form-control" onKeyUp="buscar();"><br>
@@ -227,7 +227,7 @@
                     </select>
                 </div>
               </div>
-            </div> 
+            </div>
         </div>
         <div class="modal-footer">
           <!--<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>-->
@@ -237,9 +237,9 @@
       </div>
       </div>
 
-    <!--  
+    <!--
 
-  <script>      
+  <script>
       function buscar() {
           var textoBusqueda = $("input#datosCliente").val();
           console.log("TextoBusqueda ("+textoBusqueda+")");
@@ -247,8 +247,8 @@
           {
             $.post("../core/core.sql.listado.clientes.registro.php",{valorBusqueda: textoBusqueda},function(mensaje) {
                 $("#listaclientes").html(mensaje);
-               }); 
-          } else { 
+               });
+          } else {
               $("#listaclientes").html('');
         };
         //if(textoBusqueda=="")console.log("tb esta null");
@@ -257,7 +257,7 @@
           var textoBusqueda ="a";
           $.post("../core/core.sql.listado.clientes.registro.php",{valorBusqueda: textoBusqueda},function(mensaje) {
                 $("#listaclientes").html(mensaje);
-               }); 
+               });
         }
 
         function confirmaCliente()
@@ -277,15 +277,15 @@
     }
   </style>
 <script>
- 
+
       function mostrarForm($muestra,$oculta){
       //var chk = document.getElementById('check');
 
       document.getElementById('paso'+$muestra).hidden=false;
       document.getElementById('paso'+$oculta).hidden=true;
       //document.getElementById("barraprogreso").aria-valuenow=($muestra*20);
-      $('#barraprogreso').attr("aria-valuenow",($muestra*16.6)); 
-      $('#barraprogreso').attr("style","width:"+($muestra*16.6)+"%;"); 
+      $('#barraprogreso').attr("aria-valuenow",($muestra*16.6));
+      $('#barraprogreso').attr("style","width:"+($muestra*16.6)+"%;");
       }
 
       function selectCliente()

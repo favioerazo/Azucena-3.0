@@ -440,6 +440,7 @@ function buscar() {
           document.getElementById("btnImprimeOrden").href="../core/core.reporte_orden.php?orden="+orden;
         });
       }
+
      /* $(function(){
         $("input[name='img-d-1']").on("change", function(){
 

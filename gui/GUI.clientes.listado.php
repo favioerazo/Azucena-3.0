@@ -21,6 +21,7 @@ include 'formheader.php';
 
 $telefono=0;
 ?>
+  <li class="breadcrumb-item active">Clientes</li>
 </ol>
 <!-- Example DataTables Card-->
 <div class="card mb-3">
@@ -41,24 +42,24 @@ $telefono=0;
             <th>MODIFICAR</th>
           </tr>
         </thead>
-        <tbody id="resultadoBusquedaClientes">      
+        <tbody id="resultadoBusquedaClientes">
         </tbody>
       </table>
-      
+
     </div>
     </div>
 
     <!-- Modal -->
   <div class="modal fade"  role="dialog" id="myModal">
     <div class="modal-dialog" id="myModal1">
-    
+
       <!-- Modal content-->
       <div class="modal-content " >
-        <div class="modal-header" >          
+        <div class="modal-header" >
           <h4 class="modal-title"><CENTER>DATOS DEL CLIENTE</CENTER></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-        <div class="modal-body">         
+        <div class="modal-body">
         <form method='POST' action='../core/core.clientes.update.php'>
           <!-- Identidad -->
             <div class="md-form">
@@ -80,7 +81,7 @@ $telefono=0;
                 <select  name="genero" class="form-control" id="exampleFormControlSelect1" title="Seleccione..."  required disabled>
                   <option id="M">Masculino</option>
                   <option id="F">Femenino</option>
-                </select>          
+                </select>
               </div>
             </div>
 
@@ -100,11 +101,11 @@ $telefono=0;
                 <input name="tel" type="text" id="tel" class="form-control"  style="text-transform:uppercase" value="" placeholder="____-____"  ><span class="input-group-addon">   </span><i id="add" type="submit" style='font-size:24px;color:green' class="fa fa-plus font-weight-light btn btn-info" onclick="return add_li()" value="Añadir" ></i>
                 <input type="hidden" id="vartel" value="" name="">
               </div>
-                 <!-- <input type="submit" onclick="return add_li()" value="Añadir"> 
+                 <!-- <input type="submit" onclick="return add_li()" value="Añadir">
                  </form>-->
                 <ul id="listaTelefonos"  >
                   <div id="contenedorTelefonos">
-                    
+
                   </div>
                 </ul>
             </div>
@@ -124,10 +125,10 @@ $telefono=0;
           <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
           <button class="btn btn-info" id="eliminaContenido" target="_blank" >Imprimir</button>
           <button class="btn btn-success pull-left" type="submit" target="_blank" >Actualizar</button>
-        </div>        
+        </div>
         </form>
       </div>
-      
+
     </div>
   </div>
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -149,10 +150,10 @@ $telefono=0;
       }
       });
 
-      
+
     </script>
     <script>
- 
+
       function validarchk(){
       var chk = document.getElementById('check');
       //var txt = document.getElementById('id');
@@ -171,7 +172,7 @@ $telefono=0;
         //alert("deshabilito");
 
         document.getElementById("direccion").readOnly=true;
-          //txt.disabled='disabled';          
+          //txt.disabled='disabled';
          // document.getElementById("id").disabled='disabled';
         document.getElementById("materialFormCardNameEx").readOnly='readOnly';
         document.getElementById("exampleFormControlSelect1").readOnly='true';
@@ -182,10 +183,10 @@ $telefono=0;
         document.getElementById("add").readOnly='readOnly';
       }
       }
-    </script> 
+    </script>
 
     <script>
- 
+
       function carga(va){
         //alert("Presiono"+va.value);
         //document.getElementById("correo").value=va.value;
@@ -213,13 +214,13 @@ $telefono=0;
         document.getElementById("listaTelefonos").readOnly=true;
         document.getElementById("add").readOnly=true;
 
-        if(arreglo[3]=="F")          
+        if(arreglo[3]=="F")
         document.getElementById("F").selected="selected";
       else
         document.getElementById("M").selected="selected";
       }
     </script>
-    <script>      
+    <script>
       function reset($id)
       {
         $('contenedorTelefonos').remove();
@@ -233,8 +234,8 @@ $telefono=0;
             $.post("../core/core.sql.busqueda.telefonos.cliente.php",{valorBusqueda: textoBusqueda},function(mensaje) {
                 $("#contenedorTelefonos").html(mensaje);
                 //alert(mensaje);
-               }); 
-          } else { 
+               });
+          } else {
               $("#contenedorTelefonos").html('');
         };
       };
@@ -264,8 +265,8 @@ $telefono=0;
           {
             $.post("../core/core.sql.busqueda.clientes.php",{valorBusqueda: textoBusqueda},function(mensaje) {
                 $("#resultadoBusquedaClientes").html(mensaje);
-               }); 
-          } else { 
+               });
+          } else {
               $("#resultadoBusquedaClientes").html('<p></p>');
         };
       };
@@ -301,22 +302,22 @@ $telefono=0;
 
 
                 document.getElementById("tel").value="";
-                tmp++;  
+                tmp++;
                 //var valor=document.getElementById("listaTelefonos").value;
                 /*alert("El valor es: "+(tmp));
                 //valor=valor+1;
                 //document.getElementById("listaTelefonos").value=valor;
-                tmp++;              
+                tmp++;
                 document.getElementById("vartel").value+=nuevoLi+",";
                 document.getElementById("guardar").classList.add('btn btn-success');
 */
              }
             }
           }
-            
+
             return false;
         }
- 
+
         /**
          * Funcion que busca si existe ya el <li> dentrol del <ul>
          * Devuelve true si no existe.
@@ -331,7 +332,7 @@ $telefono=0;
             }
             return true;
         }
- 
+
         /**
          * Funcion para eliminar los include_libs
          * Tiene que recibir el elemento pulsado
@@ -354,5 +355,3 @@ $telefono=0;
       //Debemos incluir el formfooter.php siempre
       include 'formfooter.php';
     ?>
-            
-    

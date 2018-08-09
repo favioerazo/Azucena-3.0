@@ -603,7 +603,7 @@
 			(c_registro,
 				v_costo_estimado,
 				d_forma_pago,
-				v_adelanto_pago_tabajo,
+				v_adelanto_pago_trabajo,
 				f_posible_entrega,
 				d_observaciones,
 				c_usuario_encargado,

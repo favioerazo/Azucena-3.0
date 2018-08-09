@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte.imagenes.danios" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="52264c30-784e-4eff-8010-1d0c631eee86">
+	<property name="ireport.zoom" value="0.8264462809917359"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select GROUP_CONCAT(d_imagen) as d_imagen, GROUP_CONCAT(d_ruta) as d_ruta from dat_reg_imagenes where c_registro=2395000001]]>
+	</queryString>
+	<field name="d_imagen" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="d_ruta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="6" width="572" height="20" uuid="b47f1ae6-fd0f-4c0c-909f-62f21000d260"/>
+				<textElement textAlignment="Center">
+					<font size="14" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[DETALLES DE LAS REPARACIONES SOLICITADAS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="7" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="4" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="675" splitType="Stretch">
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="0" y="0" width="287" height="178" uuid="2fee877b-3d1e-4b69-951d-5e3beb7c01ed"/>
+				<box>
+					<pen lineStyle="Double"/>
+					<topPen lineWidth="0.5" lineStyle="Double"/>
+					<leftPen lineWidth="0.5" lineStyle="Double"/>
+					<bottomPen lineWidth="0.5" lineStyle="Double"/>
+					<rightPen lineWidth="0.5" lineStyle="Double"/>
+				</box>
+				<imageExpression><![CDATA["c://Xampp/htdocs/azucena"+$F{d_ruta}.split(",")[5]]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="287" y="0" width="285" height="178" uuid="8be8b048-60f3-4ee1-b474-d452ec602843"/>
+				<box>
+					<pen lineStyle="Double"/>
+					<topPen lineWidth="0.5" lineStyle="Double"/>
+					<leftPen lineWidth="0.5" lineStyle="Double"/>
+					<bottomPen lineWidth="0.5" lineStyle="Double"/>
+					<rightPen lineWidth="0.5" lineStyle="Double"/>
+				</box>
+				<imageExpression><![CDATA["c://Xampp/htdocs/azucena"+$F{d_ruta}.split(",")[6]]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="287" y="242" width="285" height="178" uuid="eb1fe917-e593-443d-b9af-f604850c09e4"/>
+				<box>
+					<pen lineStyle="Double"/>
+					<topPen lineWidth="0.5" lineStyle="Double"/>
+					<leftPen lineWidth="0.5" lineStyle="Double"/>
+					<bottomPen lineWidth="0.5" lineStyle="Double"/>
+					<rightPen lineWidth="0.5" lineStyle="Double"/>
+				</box>
+				<imageExpression><![CDATA["c://Xampp/htdocs/azucena"+$F{d_ruta}.split(",")[8]]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="0" y="487" width="287" height="178" uuid="73922101-fd54-4ec4-85f7-04631b266dee"/>
+				<box>
+					<pen lineStyle="Double"/>
+					<topPen lineWidth="0.5" lineStyle="Double"/>
+					<leftPen lineWidth="0.5" lineStyle="Double"/>
+					<bottomPen lineWidth="0.5" lineStyle="Double"/>
+					<rightPen lineWidth="0.5" lineStyle="Double"/>
+				</box>
+				<imageExpression><![CDATA["c://Xampp/htdocs/azucena"+$F{d_ruta}.split(",")[9]]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="0" y="242" width="287" height="178" uuid="44540c23-6b74-4d30-a2dc-7a3b103ef762"/>
+				<box>
+					<pen lineStyle="Double"/>
+					<topPen lineWidth="0.5" lineStyle="Double"/>
+					<leftPen lineWidth="0.5" lineStyle="Double"/>
+					<bottomPen lineWidth="0.5" lineStyle="Double"/>
+					<rightPen lineWidth="0.5" lineStyle="Double"/>
+				</box>
+				<imageExpression><![CDATA["c://Xampp/htdocs/azucena"+$F{d_ruta}.split(",")[7]]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="0" y="178" width="287" height="64" uuid="7d442ecd-b9d1-4bba-9036-35224053e1b0"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{d_imagen}.split( ",")[5]]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="287" y="178" width="287" height="64" uuid="cdd8c657-d037-499d-9154-3bc8b40e5a28"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{d_imagen}.split( ",")[6]]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="423" width="287" height="64" uuid="bddecf63-ef88-4a0c-9397-04cb66a3d843"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{d_imagen}.split( ",")[7]]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="287" y="420" width="287" height="64" uuid="613f9522-6fa2-4c84-a623-054da4531254"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{d_imagen}.split( ",")[8]]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="572" width="287" height="64" uuid="c3b4b9e7-f0a9-4f0e-9c75-b83446a8df92"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{d_imagen}.split( ",")[9]]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="12" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="10" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="6" splitType="Stretch"/>
+	</summary>
+</jasperReport>
